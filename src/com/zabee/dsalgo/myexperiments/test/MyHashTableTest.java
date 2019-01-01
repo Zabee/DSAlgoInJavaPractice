@@ -1,11 +1,17 @@
 package com.zabee.dsalgo.myexperiments.test;
 
+import org.junit.AfterClass;
 import org.junit.Test;
 
 import com.zabee.dsalgo.myexperiments.MyHashTable;
 
 public class MyHashTableTest {
 
+	@AfterClass
+	public static void afterExecution() {
+		System.out.println("Execution done. Bye, bye.");
+	}
+	
 	@Test
 	public void testMyHashTable() {
 		MyHashTable hashTable = new MyHashTable(10);
@@ -26,5 +32,7 @@ public class MyHashTableTest {
 		System.out.println(hashTable.get(11));
 		System.out.println(hashTable);
 	}
+	
+	
 
 }
