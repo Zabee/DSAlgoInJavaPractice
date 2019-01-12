@@ -3,10 +3,14 @@ package craking.the.coding.interview.exercises.Examples_Exercises;
 import java.util.HashSet;
 import java.util.Set;
 
-public class IsStringWithUniqueChars {
+public class StringWithUniqueChars {
 
 	private char[] string;
 
+	public boolean isUniqueWithBitVector() {
+		boolean isUnique = true;
+		return isUnique;
+	}
 	/**
 	 * O(n^2)
 	 * 

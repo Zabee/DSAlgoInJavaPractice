@@ -8,11 +8,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import craking.the.coding.interview.exercises.Examples_Exercises.IsStringWithUniqueChars;
+import craking.the.coding.interview.exercises.Examples_Exercises.StringWithUniqueChars;
 
-public class IsStringWithUniqueCharsTest {
+public class StringWithUniqueCharsTest {
 
-	IsStringWithUniqueChars isUniqueChecker = new IsStringWithUniqueChars(); 
+	StringWithUniqueChars isUniqueChecker = new StringWithUniqueChars(); 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		System.out.println("BeforeClass	setUpBeforeClass()");
