@@ -7,10 +7,56 @@ public class StringWithUniqueChars {
 
 	private char[] string;
 
-	public boolean isUniqueWithBitVector() {
+	public static void main(String[] args) {
+		int x = ' ' - 0;
+		System.out.println(x);
+	}
+
+	/*
+	 * O(n)
+	 */
+	public boolean isUniqueWithBitVector(String str) {
 		boolean isUnique = true;
+		int finalBitVector = 0;
+		int bitVectorForAChar = 0;
+		for (int i = 0; i < str.length(); i++) {
+			// To make sure it is between 0 to 26 i.e. 'a' to 'z'
+			int indexValue = str.charAt(i) - 'a';
+			// ASCII value of a space is 32 so it 32 - 97 ends in a negative number so let's
+			// assign some customized value beyond a to z i.e. 27
+			if (indexValue < 0) {
+				indexValue = 27;
+			}
+			bitVectorForAChar = 1 << indexValue;
+
+			if ((finalBitVector & bitVectorForAChar) > 0) {
+				return false;
+			}
+			finalBitVector = finalBitVector | bitVectorForAChar;
+		}
 		return isUnique;
 	}
+	/**
+	 * O(n)
+	 * @param str
+	 * @return
+	 */
+	public boolean isUniqueWithBooleanArray(String str) {
+		if (str.length() > 126) {
+			// We are only working with ASCII - this is the assumption. So, reject anything
+			// larger than 2^8
+			return false;
+		}
+		boolean[] characters = new boolean[128];
+		for (int i = 0; i < str.length(); i++) {
+			if (characters[str.charAt(i)] == true) {
+				return false;
+			}
+			characters[str.charAt(i)] = true;
+		}
+		return true;
+	}
+
 	/**
 	 * O(n^2)
 	 * 
