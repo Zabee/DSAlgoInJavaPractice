@@ -60,4 +60,80 @@ public class ZeroMatrix {
 			System.out.println();
 		}
 	}
+
+	public static void main(String[] args) {
+		final int[][] matrix = { { 1, 2 }, { 0, 4 } };
+		OptimizedZeroMatrix.setZeros(matrix);
+	}
+
+	private static class OptimizedZeroMatrix {
+		// I have no idea what's going on here. Okay, let demo inner classes at least :D
+		private static void setZeros(int[][] matrix) {
+			boolean rowHasZero = false;
+			boolean colHasZero = false;
+
+			// Check if first row has zero anywhere
+			for (int j = 0; j < matrix[0].length; j++) {
+				if (matrix[0][j] == 0) {
+					rowHasZero = true;
+					break;
+				}
+			}
+			// Check if first column has zero anywhere
+			for (int i = 0; i < matrix.length; i++) {
+				if (matrix[i][0] == 0) {
+					colHasZero = true;
+					break;
+				}
+			}
+
+			// Check if anywhere in the array has zero
+			for (int i = 1; i < matrix.length; i++) {
+				for (int j = 1; j < matrix[0].length; j++) {
+					if (matrix[i][j] == 0) {
+						matrix[i][0] = 0;
+						matrix[0][j] = 0;
+					}
+				}
+			}
+
+			// Nullify rows based on value in first column
+			for (int i = 1; i < matrix.length; i++) {
+				if (matrix[i][0] == 0) {
+					nullifyRow(matrix, i);
+				}
+			}
+
+			// Nullify cols based on value in first row
+			for (int j = 1; j < matrix[0].length; j++) {
+				if (matrix[0][j] == 0) {
+					nullifyColumn(matrix, j);
+				}
+			}
+
+			// Nullify first row
+			if (rowHasZero) {
+				nullifyRow(matrix, 0);
+			}
+
+			// Nullify first column
+			if (colHasZero) {
+				nullifyRow(matrix, 0);
+			}
+
+		}
+
+		private static void nullifyColumn(int[][] matrix, int argJ) {
+			for (int i = 0; i < matrix.length; i++) {
+				matrix[i][argJ] = 0;
+			}
+
+		}
+
+		private static void nullifyRow(int[][] matrix, int argI) {
+			for (int j = 0; j < matrix[0].length; j++) {
+				matrix[argI][j] = 0;
+			}
+		}
+	}
 }

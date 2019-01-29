@@ -1,4 +1,4 @@
-package com.zabee.dsalgo.generalcodeishere;
+package com.zabee.dsalgo.myexperiments;
 
 import java.util.ArrayList;
 import java.util.Arrays;
