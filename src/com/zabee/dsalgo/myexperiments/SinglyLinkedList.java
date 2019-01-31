@@ -1,5 +1,7 @@
 package com.zabee.dsalgo.myexperiments;
 
+import static org.junit.Assert.assertArrayEquals;
+
 import java.util.Scanner;
 
 public class SinglyLinkedList {
@@ -138,15 +140,35 @@ class LinkedList {
 		printEntireList();
 	}
 
+	public static void isListEmpty() {
+		if (head == null) {
+			SinglyLinkedList.main(null);
+		}
+	}
+
 	public static void removeFirst() {
 		System.out.println("Removing from first");
-
+		isListEmpty();
+		// Remove first code
+		head = head.next;
 		listLength--;
 		printEntireList();
 	}
 
 	public static void removeLast() {
 		System.out.println("Removing from last");
+		isListEmpty();
+		temp = head;
+		Node previous = temp;
+		if (listLength == 1) {
+			removeFirst();
+		}
+		// Remove last code
+		while (temp.next != null) {
+			previous = temp;
+			temp = temp.next;
+		}
+		previous.next = null;
 
 		listLength--;
 		printEntireList();
@@ -155,7 +177,22 @@ class LinkedList {
 	public static void removeAt(final int index) {
 		System.out.println("Removing from " + index);
 		checkIndex(index);
+		if (listLength == 1 && index == 1) {
+			removeFirst();
+		}
+		isListEmpty();
 
+		// Remove at code
+		temp = head;
+		int i = 0;
+		Node prev = temp;
+		while (temp.next != null && i < index - 1 /** Pointing to the indexed node **/
+		) {
+			i++;
+			prev = temp;
+			temp = temp.next;
+		}
+		prev.next = temp.next;
 		listLength--;
 		printEntireList();
 	}
@@ -163,16 +200,29 @@ class LinkedList {
 	public static <T> void updateAt(final int index, final T argValue) {
 		System.out.println("Updating at " + index);
 		checkIndex(index);
+		temp = head;
+		for (int i = 0; i < index - 1; i++) {
+			temp = temp.next;
+		}
+		temp.value = argValue;
 		printEntireList();
 	}
 
 	public static <T> void updateFirst(final T argValue) {
 		System.out.println("Updating at first");
+		if (head != null) {
+			head.value = argValue;
+		}
 		printEntireList();
 	}
 
 	public static <T> void updateLast(final T argValue) {
 		System.out.println("Updating at last");
+		Node temp = head;
+		while (temp.next != null) {
+			temp = temp.next;
+		}
+		temp.value = argValue;
 		printEntireList();
 	}
 
@@ -184,6 +234,8 @@ class LinkedList {
 				temp = temp.next;
 			}
 			System.out.print("[" + temp.value + "]-||\n");
+		} else {
+			System.out.println("List is empty");
 		}
 	}
 }
