@@ -1,9 +1,14 @@
-package com.zabee.dsalgo.myexperiments;
-
-import static org.junit.Assert.assertArrayEquals;
+package com.zabee.dsalgo.myexperiments.linkedlist;
 
 import java.util.Scanner;
 
+/**
+ * Modifying list like Insert, Update, Delete or any other operation on
+ * LinkedList is O(n)
+ * 
+ * @author zulla
+ *
+ */
 public class SinglyLinkedList {
 
 	private static Scanner scanner;
@@ -84,10 +89,59 @@ class LinkedList {
 
 	}
 
-	Node newNode;
+	public static void destroyList() {
+		// tail is never used through
+		head = temp = tail = null;
+		listLength = 0;
+	}
+
+	/**
+	 * O(n^2)
+	 * 
+	 * @return
+	 */
+	public static boolean isListUnique() {
+		temp = head;
+		Node temp2 = null;
+		while (temp != null) {
+			// Although the list is generic for time being let's assume it's a interger list
+			int value = (int) temp.value;
+			temp2 = temp.next;
+			while (temp2 != null) {
+				if (value == (int) temp2.value)
+					return false;
+				temp2 = temp2.next;
+			}
+			temp = temp.next;
+		}
+		return true;
+	}
+
+	/**
+	 * O(n)
+	 * 
+	 * @return
+	 */
+	public static boolean isListUniqueFasterApproach() {
+		temp = head;
+		int value = 0, x = 0, xt = 0;
+		while (temp != null) {
+			// Although the list is generic for time being let's assume it's a interger list
+			value = (int) temp.value;
+			xt = 1 << value;
+			if ((xt & x) > 0)
+				return false;
+			x = x | xt;
+			System.out.println("For value:" + value + "\tx" + "->" + x);
+			temp = temp.next;
+		}
+		return true;
+	}
+
+	private Node newNode;
 
 	public static <T> void insertFirst(final T argValue) {
-		System.out.println("Inserting at first");
+//		System.out.println("Inserting at first");
 		Node<T> newNode = new Node<T>(argValue);
 		if (head == null) {
 			head = newNode;
@@ -96,20 +150,23 @@ class LinkedList {
 			head = newNode;
 		}
 		listLength++;
-		printEntireList();
+		// printEntireList();
 	}
 
 	public static <T> void insertLast(final T argValue) {
-		System.out.println("Inserting at last");
+//		System.out.println("Inserting at last");
 		Node<T> newNode = new Node<T>(argValue);
-		temp = head;
-		while (temp.next != null) {
-			temp = temp.next;
+		if (head == null) {
+			head = newNode;
+		} else {
+			temp = head;
+			while (temp.next != null) {
+				temp = temp.next;
+			}
+			temp.next = newNode;
 		}
-		temp.next = newNode;
-
 		listLength++;
-		printEntireList();
+		// printEntireList();
 
 	}
 
@@ -125,7 +182,7 @@ class LinkedList {
 	}
 
 	public static <T> void insertAt(final int index, final T argValue) {
-		System.out.println("Inserting at " + index);
+//		System.out.println("Inserting at " + index);
 		checkIndex(index);
 		temp = head;
 		// i > index - 1 because I have stop before the position to adjust the links
@@ -137,7 +194,7 @@ class LinkedList {
 		temp.next = newNode;
 
 		listLength++;
-		printEntireList();
+		// printEntireList();
 	}
 
 	public static void isListEmpty() {
@@ -152,7 +209,7 @@ class LinkedList {
 		// Remove first code
 		head = head.next;
 		listLength--;
-		printEntireList();
+		// printEntireList();
 	}
 
 	public static void removeLast() {
@@ -171,7 +228,7 @@ class LinkedList {
 		previous.next = null;
 
 		listLength--;
-		printEntireList();
+		// printEntireList();
 	}
 
 	public static void removeAt(final int index) {
@@ -194,18 +251,18 @@ class LinkedList {
 		}
 		prev.next = temp.next;
 		listLength--;
-		printEntireList();
+		// printEntireList();
 	}
 
 	public static <T> void updateAt(final int index, final T argValue) {
-		System.out.println("Updating at " + index);
+//		System.out.println("Updating at " + index);
 		checkIndex(index);
 		temp = head;
 		for (int i = 0; i < index - 1; i++) {
 			temp = temp.next;
 		}
 		temp.value = argValue;
-		printEntireList();
+		// printEntireList();
 	}
 
 	public static <T> void updateFirst(final T argValue) {
@@ -213,7 +270,7 @@ class LinkedList {
 		if (head != null) {
 			head.value = argValue;
 		}
-		printEntireList();
+		// printEntireList();
 	}
 
 	public static <T> void updateLast(final T argValue) {
@@ -223,7 +280,7 @@ class LinkedList {
 			temp = temp.next;
 		}
 		temp.value = argValue;
-		printEntireList();
+		// printEntireList();
 	}
 
 	public static void printEntireList() {
