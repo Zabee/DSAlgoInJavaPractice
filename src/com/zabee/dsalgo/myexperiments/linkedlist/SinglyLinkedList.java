@@ -81,7 +81,7 @@ class Node<T> {
 }
 
 class LinkedList {
-	private static Node head, tail;
+	protected static Node head, tail;
 	private static Node temp;
 	private static int listLength;
 
@@ -132,7 +132,7 @@ class LinkedList {
 			if ((xt & x) > 0)
 				return false;
 			x = x | xt;
-			System.out.println("For value:" + value + "\tx" + "->" + x);
+//			System.out.println("For value:" + value + "\tx" + "->" + x);
 			temp = temp.next;
 		}
 		return true;
@@ -167,6 +167,18 @@ class LinkedList {
 		}
 		listLength++;
 		// printEntireList();
+
+	}
+
+	public static Node getNodeByValue(final int argNodeValue) {
+		temp = head;
+		while (temp != null && (int) temp.value != argNodeValue) {
+			temp = temp.next;
+		}
+		if (temp == null) {
+			System.out.println("Node does not exists");
+		}
+		return temp;
 
 	}
 
@@ -229,6 +241,60 @@ class LinkedList {
 
 		listLength--;
 		// printEntireList();
+	}
+
+	/**
+	 * O(n)
+	 * 
+	 * @param argValue
+	 */
+	public static void deleteByValue(final int argValue) {
+		temp = head;
+		Node prev = head;
+		while (temp != null && argValue != (int) temp.value) {
+			prev = temp;
+			temp = temp.next;
+		}
+		if (temp == null) {
+			System.out.println("Not found");
+			return;
+		}
+		prev.next = temp.next;
+	}
+
+	/**
+	 * Upper bound worst case is O(n) This is same as delete by value
+	 * 
+	 * @param argValue
+	 * 
+	 */
+	public static void deleteFromMiddleUsingAdditionalPointerOrNodeInJavaWorld(final int argValue) {
+		temp = head;
+		Node prev = head;
+
+		while (temp != null && argValue != (int) temp.value) {
+			prev = temp;
+			temp = temp.next;
+		}
+		if (temp == null) {
+			System.out.println("Not found");
+			return;
+		}
+		prev.next = temp.next;
+	}
+
+	/**
+	 * Assuming head of linked list is unknown
+	 * 
+	 * @param argNode
+	 */
+	public static void deleteFromMiddleOnly(final Node argNode) {
+		if (argNode == null || argNode.next == null) {
+			return; // Last node? Ignore.
+		}
+		Node nextNode = argNode.next;
+		argNode.value = nextNode.value;
+		argNode.next = nextNode.next;
 	}
 
 	public static void removeAt(final int index) {
@@ -295,4 +361,106 @@ class LinkedList {
 			System.out.println("List is empty");
 		}
 	}
+
+	/**
+	 * Upper bound worst case is O(n^2) Space complexity is O(1)
+	 */
+	public static void removeDuplicate() {
+		temp = head;
+		Node runner;
+		int value;
+		while (temp != null) {
+			value = (int) temp.value;
+			runner = temp;
+			while (runner.next != null) {
+				if (value == (int) runner.next.value) {
+					runner.next = runner.next.next;
+				} else {
+					runner = runner.next;
+				}
+			}
+			temp = temp.next;
+		}
+	}
+
+	/**
+	 * Return kth from last Assuming length of the linked list is not known
+	 * 
+	 * A trivial solution would be find the length then return n-k element Time and
+	 * Space complexity is O(n)
+	 * 
+	 * @param index
+	 * @return
+	 */
+	public static int printKthElementFromLast(final Node argHead, int argIndexK) {
+		if (argHead == null || argIndexK == 0) {
+			return 0;
+		}
+//		System.out.println("Pusing: " + argHead.value);
+		int index = 0;
+		index = printKthElementFromLast(argHead.next, argIndexK);
+//		System.out.println("Popping: " + argHead.value);
+		if (index == argIndexK - 1) {
+			System.out.println("Value at kth location " + argHead.value);
+		}
+
+		return ++index;
+	}
+
+	/**
+	 * Assuming 'x' will always be passed as ZERO Upper Bound, Worst Case Time and
+	 * space complexity is O(n) Due to recursive calls space complexity is O(n)
+	 * 
+	 * @param argHead
+	 * @param argIndexK
+	 * @param x
+	 * @return
+	 */
+	public static Node returnKthFromLast(final Node argHead, int argIndexK) {
+		if (argHead == null || argIndexK == 0) {
+			return null;
+		}
+		Node theNode = returnKthFromLast(argHead.next, argIndexK);
+		if (argIndexK == ++Index.x) {
+			return argHead;
+		}
+		return theNode;
+	}
+
+	/**
+	 * A wrapper class to keep/track the 'x' value same throughout all the recursive
+	 * calls
+	 * 
+	 * @author zulla
+	 *
+	 */
+	private static class Index {
+		public static int x = 0;
+	}
+
+	/**
+	 * O(n-k) + O(k) ==> O(n)
+	 * 
+	 * @param argHead
+	 * @param argIndexK
+	 * @return
+	 */
+
+	public static Node returnKthFromLastIterative(Node argHead, int argIndexK) {
+		if (argHead == null || argIndexK == 0) {
+			return null;
+		}
+		Node previous = argHead;
+		int x = argIndexK;
+		while (argHead != null && x > 0) {
+			argHead = argHead.next;
+			x--;
+		}
+		while (argHead != null) {
+			argHead = argHead.next;
+			previous = previous.next;
+		}
+		return previous;
+	}
+
 }
