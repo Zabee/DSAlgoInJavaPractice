@@ -88,7 +88,6 @@ class LinkedList {
 	private LinkedList() {
 
 	}
-
 	public static void destroyList() {
 		// tail is never used through
 		head = temp = tail = null;
@@ -140,6 +139,20 @@ class LinkedList {
 
 	private Node newNode;
 
+	public static <T> void add(final T argValue) {
+		Node<T> newNode = new Node<T>(argValue);
+		if (head == null) {
+			head = newNode;
+			return;
+		}
+		temp = head;
+		while (temp.next != null) {
+			temp = temp.next;
+		}
+		temp.next = newNode;
+		listLength++;
+	}
+	
 	public static <T> void insertFirst(final T argValue) {
 //		System.out.println("Inserting at first");
 		Node<T> newNode = new Node<T>(argValue);
