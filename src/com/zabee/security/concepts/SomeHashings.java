@@ -1,4 +1,4 @@
-package com.zabee.securityconcepts;
+package com.zabee.security.concepts;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -13,16 +13,19 @@ public class SomeHashings {
 
 	public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		byte[] hashedBytes = hashUsingMd5();
-		System.out.println(new String(base64Encode(hashedBytes), "UTF-8"));
+		System.out.println("MD5\t\t:" + new String(base64Encode(hashedBytes), "UTF-8"));
 
 		hashedBytes = hashUsingSHA1();
-		System.out.println(new String(base64Encode(hashedBytes), "UTF-8"));
+		System.out.println("SHA1 128 bits\t:" + new String(base64Encode(hashedBytes), "UTF-8"));
 
 		hashedBytes = hashUsingSHA2();
-		System.out.println(new String(base64Encode(hashedBytes), "UTF-8"));
+		System.out.println("SHA2 256 bits\t:" + new String(base64Encode(hashedBytes), "UTF-8"));
 
 		hashedBytes = hashUsingSHA3();
-		System.out.println(new String(base64Encode(hashedBytes), "UTF-8"));
+		System.out.println("SHA3 384 bits\t:" + new String(base64Encode(hashedBytes), "UTF-8"));
+		
+		hashedBytes = hashUsingSHA4();
+		System.out.println("SHA4 512 bits\t:" + new String(base64Encode(hashedBytes), "UTF-8"));
 	}
 
 	private static byte[] base64Encode(byte[] hashedBytes) {
@@ -82,6 +85,20 @@ public class SomeHashings {
 	}
 
 	private static byte[] hashUsingSHA3() throws NoSuchAlgorithmException {
+		byte[] hashedBytes = {};
+		try {
+			MessageDigest msgDigest = MessageDigest.getInstance("SHA-384");
+			msgDigest.reset();
+			msgDigest.update(password.getBytes());
+			msgDigest.update(getSecureRandom());
+			hashedBytes = msgDigest.digest();
+		} catch (NoSuchAlgorithmException ns) {
+			ns.printStackTrace();
+		}
+		return hashedBytes;
+	}
+	
+	private static byte[] hashUsingSHA4() throws NoSuchAlgorithmException {
 		byte[] hashedBytes = {};
 		try {
 			MessageDigest msgDigest = MessageDigest.getInstance("SHA-512");

@@ -1,4 +1,4 @@
-package com.zabee.securityconcepts;
+package com.zabee.security.concepts;
 
 import java.nio.ByteBuffer;
 import java.security.InvalidAlgorithmParameterException;
