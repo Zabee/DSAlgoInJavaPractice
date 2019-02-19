@@ -5,10 +5,8 @@ import java.util.*;
 /**
  *
  *
- * @author zulla
+ * @author Zabee
  * @created August 14, 2018
- * @version $Revision$
- * @since 18.0
  */
 public class QueueDemo {
 
