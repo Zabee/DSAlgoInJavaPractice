@@ -10,131 +10,133 @@ import org.junit.Test;
 
 public class SinglyLinkedListTest {
 
+	MyLinkedList linkedList = new MyLinkedList();
 	
+	@Test
 	public void testCheckForDuplicates() {
-		LinkedList.insertLast(90);
-		LinkedList.insertLast(80);
-		LinkedList.insertLast(70);
-		LinkedList.insertLast(60);
-		LinkedList.insertLast(40);
-		LinkedList.insertLast(40);
-		LinkedList.insertLast(30);
-		LinkedList.insertLast(20);
-		LinkedList.insertLast(10);
-		LinkedList.insertLast(0);
-		assertFalse(LinkedList.isListUnique());
+		linkedList.insertLast(90);
+		linkedList.insertLast(80);
+		linkedList.insertLast(70);
+		linkedList.insertLast(60);
+		linkedList.insertLast(40);
+		linkedList.insertLast(40);
+		linkedList.insertLast(30);
+		linkedList.insertLast(20);
+		linkedList.insertLast(10);
+		linkedList.insertLast(0);
+		assertFalse(linkedList.isListUnique());
 
-		LinkedList.updateAt(5, 50);
-		assertTrue(LinkedList.isListUnique());
+		linkedList.updateAt(5, 50);
+		assertTrue(linkedList.isListUnique());
 	}
 
 	@After
 	public void testResetJVMLoadedLinkedList() {
-		LinkedList.destroyList();
+		linkedList.destroyList();
 	}
 
 	
 	public void testCheckForDuplicatesFaster() {
-		LinkedList.insertLast(90);
-		LinkedList.insertLast(80);
-		LinkedList.insertLast(70);
-		LinkedList.insertLast(60);
-		LinkedList.insertLast(40);
-		LinkedList.insertLast(40);
-		LinkedList.insertLast(30);
-		LinkedList.insertLast(20);
-		LinkedList.insertLast(10);
-		LinkedList.insertLast(0);
-		assertFalse(LinkedList.isListUniqueFasterApproach());
+		linkedList.insertLast(90);
+		linkedList.insertLast(80);
+		linkedList.insertLast(70);
+		linkedList.insertLast(60);
+		linkedList.insertLast(40);
+		linkedList.insertLast(40);
+		linkedList.insertLast(30);
+		linkedList.insertLast(20);
+		linkedList.insertLast(10);
+		linkedList.insertLast(0);
+		assertFalse(linkedList.isListUniqueFasterApproach());
 
-		LinkedList.updateAt(5, 50);
-		assertTrue(LinkedList.isListUniqueFasterApproach());
+		linkedList.updateAt(5, 50);
+		assertTrue(linkedList.isListUniqueFasterApproach());
 	}
 
 	
 	public void testRemoveDulicates() {
-		LinkedList.insertLast(90);
-		LinkedList.insertLast(80);
-		LinkedList.insertLast(70);
-		LinkedList.insertLast(60);
-		LinkedList.insertLast(40);
-		LinkedList.insertLast(40);
-		LinkedList.insertLast(30);
-		LinkedList.insertLast(20);
-		LinkedList.insertLast(10);
-		LinkedList.insertLast(0);
-		LinkedList.printEntireList();
-		LinkedList.removeDuplicate();
-		LinkedList.printEntireList();
-		assertTrue(LinkedList.isListUnique());
-		assertTrue(LinkedList.isListUniqueFasterApproach());
+		linkedList.insertLast(90);
+		linkedList.insertLast(80);
+		linkedList.insertLast(70);
+		linkedList.insertLast(60);
+		linkedList.insertLast(40);
+		linkedList.insertLast(40);
+		linkedList.insertLast(30);
+		linkedList.insertLast(20);
+		linkedList.insertLast(10);
+		linkedList.insertLast(0);
+		linkedList.printEntireList();
+		linkedList.removeDuplicate();
+		linkedList.printEntireList();
+		assertTrue(linkedList.isListUnique());
+		assertTrue(linkedList.isListUniqueFasterApproach());
 	}
 	
 //	@Test
 	 public void testReturnKthElement() {
-		LinkedList.insertLast(90);
-		LinkedList.insertLast(80);
-		LinkedList.insertLast(70);
-		LinkedList.insertLast(60);
-		LinkedList.insertLast(50);
-		LinkedList.insertLast(40);
-		LinkedList.insertLast(30);
-		LinkedList.insertLast(20);
-		LinkedList.insertLast(10);
-		LinkedList.insertLast(0);
-		LinkedList.insertLast("Some generics here");
-		LinkedList.printEntireList();
-		/*assertEquals(80, */LinkedList.printKthElementFromLast(LinkedList.head, 4)/*);*/;
-		Node<?> theNode = LinkedList.returnKthFromLast(LinkedList.head, 4);
+		linkedList.insertLast(90);
+		linkedList.insertLast(80);
+		linkedList.insertLast(70);
+		linkedList.insertLast(60);
+		linkedList.insertLast(50);
+		linkedList.insertLast(40);
+		linkedList.insertLast(30);
+		linkedList.insertLast(20);
+		linkedList.insertLast(10);
+		linkedList.insertLast(0);
+		linkedList.insertLast("Some generics here");
+		linkedList.printEntireList();
+		/*assertEquals(80, */linkedList.printKthElementFromLast(linkedList.head, 4)/*);*/;
+		Node<?> theNode = linkedList.returnKthFromLast(linkedList.head, 4);
 		System.out.println("RECURSIVE: The node is " + (theNode != null ? theNode.value : theNode));
-		theNode = LinkedList.returnKthFromLastIterative(LinkedList.head, 4);
+		theNode = linkedList.returnKthFromLastIterative(linkedList.head, 4);
 		System.out.println("ITERATIVE: The node is " + (theNode != null ? theNode.value : theNode));
 	}
 	
 	public void testDeleteByValue() {
-		LinkedList.insertLast(90);
-		LinkedList.insertLast(80);
-		LinkedList.insertLast(70);
-		LinkedList.insertLast(60);
-		LinkedList.insertLast(50);
-		LinkedList.insertLast(40);
-		LinkedList.insertLast(30);
-		LinkedList.insertLast(20);
-		LinkedList.insertLast(10);
-		LinkedList.insertLast(0);
+		linkedList.insertLast(90);
+		linkedList.insertLast(80);
+		linkedList.insertLast(70);
+		linkedList.insertLast(60);
+		linkedList.insertLast(50);
+		linkedList.insertLast(40);
+		linkedList.insertLast(30);
+		linkedList.insertLast(20);
+		linkedList.insertLast(10);
+		linkedList.insertLast(0);
 		
-		LinkedList.deleteByValue(50);
-		LinkedList.printEntireList();
+		linkedList.deleteByValue(50);
+		linkedList.printEntireList();
 		
-		LinkedList.deleteByValue(2);
-		LinkedList.printEntireList();
+		linkedList.deleteByValue(2);
+		linkedList.printEntireList();
 		
-		LinkedList.deleteByValue(20);
-		LinkedList.printEntireList();
+		linkedList.deleteByValue(20);
+		linkedList.printEntireList();
 		
-		LinkedList.deleteByValue(10);
-		LinkedList.printEntireList();
+		linkedList.deleteByValue(10);
+		linkedList.printEntireList();
 	}
 	
 	@Test
 	public void deleteFromMiddle() {
-		LinkedList.insertLast(90);
-		LinkedList.insertLast(80);
-		LinkedList.insertLast(70);
-		LinkedList.insertLast(60);
-		LinkedList.insertLast(50);
-		LinkedList.insertLast(40);
-		LinkedList.insertLast(30);
-		LinkedList.insertLast(20);
-		LinkedList.insertLast(10);
-		LinkedList.insertLast(0);
-		LinkedList.printEntireList();
+		linkedList.insertLast(90);
+		linkedList.insertLast(80);
+		linkedList.insertLast(70);
+		linkedList.insertLast(60);
+		linkedList.insertLast(50);
+		linkedList.insertLast(40);
+		linkedList.insertLast(30);
+		linkedList.insertLast(20);
+		linkedList.insertLast(10);
+		linkedList.insertLast(0);
+		linkedList.printEntireList();
 		
-		LinkedList.deleteFromMiddleUsingAdditionalPointerOrNodeInJavaWorld(0);
-		LinkedList.printEntireList();
+		linkedList.deleteFromMiddleUsingAdditionalPointerOrNodeInJavaWorld(0);
+		linkedList.printEntireList();
 		
-		LinkedList.deleteFromMiddleOnly(LinkedList.getNodeByValue(30));
-		LinkedList.printEntireList();
+		linkedList.deleteFromMiddleOnly(linkedList.getNodeByValue(30));
+		linkedList.printEntireList();
 	}
 	
 }

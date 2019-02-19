@@ -1,8 +1,8 @@
 package com.zabee.dsalgo.myexperiments.linkedlist;
 
 /**
- * Input: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 [partition= 5] 
- * Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
+ * Input: 3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1 [partition= 5] Output: 3 -> 1 -> 2 ->
+ * 10 -> 5 -> 5 -> 8
  * 
  * @author zulla
  *
@@ -39,28 +39,31 @@ public class PartitionSinglyLinkedList {
 
 		}
 		firstTemp.next = secondPart;
-		LinkedList.head = firstPart;
+		linkedList.head = firstPart;
 	}
 
 	public static void partitionBetter(Node startNode, int x) {
 
 	}
 
+	private static MyLinkedList linkedList = new MyLinkedList();
+
 	public static void main(String[] args) {
-		LinkedList.add(3);
-		LinkedList.add(5);
-		LinkedList.add(8);
-		LinkedList.add(5);
-		LinkedList.add(10);
-		LinkedList.add(2);
-		LinkedList.add(1);
+
+		linkedList.add(3);
+		linkedList.add(5);
+		linkedList.add(8);
+		linkedList.add(5);
+		linkedList.add(10);
+		linkedList.add(2);
+		linkedList.add(1);
 		System.out.println("Before partition");
-		LinkedList.printEntireList();
+		linkedList.printEntireList();
 
-		partition(LinkedList.head, 5);
-		LinkedList.printEntireList();
+		partition(linkedList.head, 5);
+		linkedList.printEntireList();
 
-//		partitionBetter(LinkedList.head, 5);
-//		LinkedList.printEntireList();
+//		partitionBetter(linkedList.head, 5);
+//		linkedList.printEntireList();
 	}
 }

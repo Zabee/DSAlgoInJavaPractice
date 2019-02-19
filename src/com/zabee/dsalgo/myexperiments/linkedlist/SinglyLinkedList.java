@@ -31,33 +31,34 @@ public class SinglyLinkedList {
 			System.out.print("Your command goes here:");
 			command = scanner.nextLine();
 			subCmds = command.split("\\s");
+			MyLinkedList list = new MyLinkedList();
 			switch (Integer.valueOf(subCmds[0])) {
 			case 1:
-				LinkedList.insertFirst(subCmds[1]);
+				list.insertFirst(subCmds[1]);
 				break;
 			case 2:
-				LinkedList.insertAt(Integer.valueOf(subCmds[1]), subCmds[2]);
+				list.insertAt(Integer.valueOf(subCmds[1]), subCmds[2]);
 				break;
 			case 3:
-				LinkedList.insertLast(subCmds[1]);
+				list.insertLast(subCmds[1]);
 				break;
 			case 4:
-				LinkedList.removeFirst();
+				list.removeFirst();
 				break;
 			case 5:
-				LinkedList.removeLast();
+				list.removeLast();
 				break;
 			case 6:
-				LinkedList.removeAt(Integer.valueOf(subCmds[1]));
+				list.removeAt(Integer.valueOf(subCmds[1]));
 				break;
 			case 7:
-				LinkedList.updateFirst(subCmds[1]);
+				list.updateFirst(subCmds[1]);
 				break;
 			case 8:
-				LinkedList.updateAt(Integer.valueOf(subCmds[1]), subCmds[2]);
+				list.updateAt(Integer.valueOf(subCmds[1]), subCmds[2]);
 				break;
 			case 9:
-				LinkedList.updateLast(subCmds[1]);
+				list.updateLast(subCmds[1]);
 				break;
 			}
 		}
@@ -65,9 +66,10 @@ public class SinglyLinkedList {
 }
 
 class Node<T> {
-	// Letting it little but don't think you're free in the wild
+	// Letting you free a little but don't think you're free in the wild
 	Node next;
 	T value;
+	// This is to handle lists summary
 
 	public Node(T argNodeValue) {
 		this.value = argNodeValue;
@@ -80,16 +82,30 @@ class Node<T> {
 	}
 }
 
-class LinkedList {
-	protected static Node head, tail;
-	private static Node temp;
-	private static int listLength;
+class MyLinkedList {
+	protected Node head, tail;
 
-	private LinkedList() {
+	public Node getHead() {
+		return head;
+	}
+
+	public void setHead(Node head) {
+		this.head = head;
+	}
+
+	private Node temp;
+	private int listLength;
+
+	public int getLength() {
+		return listLength;
+	}
+
+	public MyLinkedList() {
 
 	}
-	public static void destroyList() {
-		// tail is never used through
+
+	public void destroyList() {
+		// tail is never used though
 		head = temp = tail = null;
 		listLength = 0;
 	}
@@ -99,7 +115,7 @@ class LinkedList {
 	 * 
 	 * @return
 	 */
-	public static boolean isListUnique() {
+	public boolean isListUnique() {
 		temp = head;
 		Node temp2 = null;
 		while (temp != null) {
@@ -121,7 +137,7 @@ class LinkedList {
 	 * 
 	 * @return
 	 */
-	public static boolean isListUniqueFasterApproach() {
+	public boolean isListUniqueFasterApproach() {
 		temp = head;
 		int value = 0, x = 0, xt = 0;
 		while (temp != null) {
@@ -139,7 +155,7 @@ class LinkedList {
 
 	private Node newNode;
 
-	public static <T> void add(final T argValue) {
+	public <T> void add(final T argValue) {
 		Node<T> newNode = new Node<T>(argValue);
 		if (head == null) {
 			head = newNode;
@@ -152,8 +168,8 @@ class LinkedList {
 		temp.next = newNode;
 		listLength++;
 	}
-	
-	public static <T> void insertFirst(final T argValue) {
+
+	public <T> void insertFirst(final T argValue) {
 //		System.out.println("Inserting at first");
 		Node<T> newNode = new Node<T>(argValue);
 		if (head == null) {
@@ -166,7 +182,7 @@ class LinkedList {
 		// printEntireList();
 	}
 
-	public static <T> void insertLast(final T argValue) {
+	public <T> void insertLast(final T argValue) {
 //		System.out.println("Inserting at last");
 		Node<T> newNode = new Node<T>(argValue);
 		if (head == null) {
@@ -183,7 +199,7 @@ class LinkedList {
 
 	}
 
-	public static Node getNodeByValue(final int argNodeValue) {
+	public Node getNodeByValue(final int argNodeValue) {
 		temp = head;
 		while (temp != null && (int) temp.value != argNodeValue) {
 			temp = temp.next;
@@ -195,7 +211,7 @@ class LinkedList {
 
 	}
 
-	private static void checkIndex(final int index) {
+	private void checkIndex(final int index) {
 		if (index > listLength) {
 			System.out.println("Index doesn't exists");
 			// This results in stack overflow if program runs for good amount of time. In
@@ -206,7 +222,7 @@ class LinkedList {
 		}
 	}
 
-	public static <T> void insertAt(final int index, final T argValue) {
+	public <T> void insertAt(final int index, final T argValue) {
 //		System.out.println("Inserting at " + index);
 		checkIndex(index);
 		temp = head;
@@ -222,13 +238,13 @@ class LinkedList {
 		// printEntireList();
 	}
 
-	public static void isListEmpty() {
+	public void isListEmpty() {
 		if (head == null) {
 			SinglyLinkedList.main(null);
 		}
 	}
 
-	public static void removeFirst() {
+	public void removeFirst() {
 		System.out.println("Removing from first");
 		isListEmpty();
 		// Remove first code
@@ -237,7 +253,7 @@ class LinkedList {
 		// printEntireList();
 	}
 
-	public static void removeLast() {
+	public void removeLast() {
 		System.out.println("Removing from last");
 		isListEmpty();
 		temp = head;
@@ -261,7 +277,7 @@ class LinkedList {
 	 * 
 	 * @param argValue
 	 */
-	public static void deleteByValue(final int argValue) {
+	public void deleteByValue(final int argValue) {
 		temp = head;
 		Node prev = head;
 		while (temp != null && argValue != (int) temp.value) {
@@ -281,7 +297,7 @@ class LinkedList {
 	 * @param argValue
 	 * 
 	 */
-	public static void deleteFromMiddleUsingAdditionalPointerOrNodeInJavaWorld(final int argValue) {
+	public void deleteFromMiddleUsingAdditionalPointerOrNodeInJavaWorld(final int argValue) {
 		temp = head;
 		Node prev = head;
 
@@ -301,7 +317,7 @@ class LinkedList {
 	 * 
 	 * @param argNode
 	 */
-	public static void deleteFromMiddleOnly(final Node argNode) {
+	public void deleteFromMiddleOnly(final Node argNode) {
 		if (argNode == null || argNode.next == null) {
 			return; // Last node? Ignore.
 		}
@@ -310,7 +326,7 @@ class LinkedList {
 		argNode.next = nextNode.next;
 	}
 
-	public static void removeAt(final int index) {
+	public void removeAt(final int index) {
 		System.out.println("Removing from " + index);
 		checkIndex(index);
 		if (listLength == 1 && index == 1) {
@@ -333,7 +349,7 @@ class LinkedList {
 		// printEntireList();
 	}
 
-	public static <T> void updateAt(final int index, final T argValue) {
+	public <T> void updateAt(final int index, final T argValue) {
 //		System.out.println("Updating at " + index);
 		checkIndex(index);
 		temp = head;
@@ -344,7 +360,7 @@ class LinkedList {
 		// printEntireList();
 	}
 
-	public static <T> void updateFirst(final T argValue) {
+	public <T> void updateFirst(final T argValue) {
 		System.out.println("Updating at first");
 		if (head != null) {
 			head.value = argValue;
@@ -352,7 +368,7 @@ class LinkedList {
 		// printEntireList();
 	}
 
-	public static <T> void updateLast(final T argValue) {
+	public <T> void updateLast(final T argValue) {
 		System.out.println("Updating at last");
 		Node temp = head;
 		while (temp.next != null) {
@@ -362,7 +378,7 @@ class LinkedList {
 		// printEntireList();
 	}
 
-	public static void printEntireList() {
+	public void printEntireList() {
 		temp = head;
 		if (temp != null) {
 			while (temp.next != null) {
@@ -378,7 +394,7 @@ class LinkedList {
 	/**
 	 * Upper bound worst case is O(n^2) Space complexity is O(1)
 	 */
-	public static void removeDuplicate() {
+	public void removeDuplicate() {
 		temp = head;
 		Node runner;
 		int value;
@@ -405,7 +421,7 @@ class LinkedList {
 	 * @param index
 	 * @return
 	 */
-	public static int printKthElementFromLast(final Node argHead, int argIndexK) {
+	public int printKthElementFromLast(final Node argHead, int argIndexK) {
 		if (argHead == null || argIndexK == 0) {
 			return 0;
 		}
@@ -429,7 +445,7 @@ class LinkedList {
 	 * @param x
 	 * @return
 	 */
-	public static Node returnKthFromLast(final Node argHead, int argIndexK) {
+	public Node returnKthFromLast(final Node argHead, int argIndexK) {
 		if (argHead == null || argIndexK == 0) {
 			return null;
 		}
@@ -459,7 +475,7 @@ class LinkedList {
 	 * @return
 	 */
 
-	public static Node returnKthFromLastIterative(Node argHead, int argIndexK) {
+	public Node returnKthFromLastIterative(Node argHead, int argIndexK) {
 		if (argHead == null || argIndexK == 0) {
 			return null;
 		}
