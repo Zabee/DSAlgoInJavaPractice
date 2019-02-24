@@ -1,6 +1,5 @@
 package com.zabee.dsalgo.myexperiments.linkedlist;
 
-
 public class MyLinkedList {
 	protected Node head, tail;
 
@@ -27,6 +26,15 @@ public class MyLinkedList {
 		// tail is never used though
 		head = temp = tail = null;
 		listLength = 0;
+	}
+
+	public Node getNthNode(int argN) {
+		Node temp = head;
+		while (temp != null && argN > 0) {
+			temp = temp.next;
+			argN--;
+		}
+		return temp;
 	}
 
 	/**
@@ -407,6 +415,31 @@ public class MyLinkedList {
 		while (argHead != null) {
 			argHead = argHead.next;
 			previous = previous.next;
+		}
+		return previous;
+	}
+
+	public Node reverseListRecursively(Node argHead) {
+		if (argHead == null || argHead.next == null) {
+			return argHead;
+		}
+		Node prev = new Node(argHead.value);
+		Node currentNode = reverseListRecursively(argHead.next);
+		Node temp = currentNode;
+		while (temp.next != null) {
+			temp = temp.next;
+		}
+		temp.next = prev;
+		return currentNode;
+	}
+	
+	public Node reverseListIteratively(Node argHead) {
+		Node next = null, previous = null, current = argHead;
+		while(current != null) {
+			next = current.next;
+			current.next = previous;
+			previous = current;
+			current = next;
 		}
 		return previous;
 	}
