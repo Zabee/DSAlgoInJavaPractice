@@ -82,6 +82,14 @@ public class MyLinkedList {
 
 	private Node newNode;
 
+	public void add(Node node) {
+		temp = head;
+		while(temp != null && temp.next != null) {
+			temp = temp.next;
+		}
+		temp.next = node;
+	}
+	
 	public <T> void add(final T argValue) {
 		Node<T> newNode = new Node<T>(argValue);
 		if (head == null) {
