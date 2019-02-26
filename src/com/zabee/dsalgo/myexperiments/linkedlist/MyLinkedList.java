@@ -395,7 +395,7 @@ public class MyLinkedList {
 	 * A wrapper class to keep/track the 'x' value same throughout all the recursive
 	 * calls
 	 * 
-	 * @author zulla
+	 * @author Zabee
 	 *
 	 */
 	private static class Index {

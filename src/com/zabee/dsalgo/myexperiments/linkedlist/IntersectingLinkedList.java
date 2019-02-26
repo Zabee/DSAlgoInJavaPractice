@@ -6,7 +6,7 @@ import java.security.GeneralSecurityException;
  * This problem is specific to a case as shown below [1->2->3->4->5->6->7]
  * [8->9->4->5->6->7] Intersection by reference
  * 
- * @author zulla
+ * @author Zabee
  *
  */
 public class IntersectingLinkedList {

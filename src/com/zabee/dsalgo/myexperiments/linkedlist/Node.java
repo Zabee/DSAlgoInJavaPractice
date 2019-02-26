@@ -1,8 +1,24 @@
 package com.zabee.dsalgo.myexperiments.linkedlist;
 
-public class Node<T> {
+public class Node<T> implements Cloneable {
 	// Letting you free a little but don't think you're free in the wild
 	Node next;
+	public Node getNext() {
+		return next;
+	}
+
+	public void setNext(Node next) {
+		this.next = next;
+	}
+
+	public T getValue() {
+		return value;
+	}
+
+	public void setValue(T value) {
+		this.value = value;
+	}
+
 	T value;
 	// This is to handle lists summary
 
@@ -34,4 +50,13 @@ public class Node<T> {
 			return false;
 	}
 
+	@Override
+	public Object clone()  {
+		try {
+			return super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

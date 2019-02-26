@@ -6,7 +6,7 @@ import java.util.Scanner;
  * Modifying list like Insert, Update, Delete or any other operation on
  * LinkedList is O(n)
  * 
- * @author zulla
+ * @author Zabee
  *
  */
 public class SinglyLinkedList {

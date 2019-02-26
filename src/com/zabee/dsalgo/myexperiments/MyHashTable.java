@@ -7,7 +7,7 @@ package com.zabee.dsalgo.myexperiments;
  * array and number of collisions. Number of collisions will be less if the size
  * of array is bigger
  * 
- * @author zulla
+ * @author Zabee
  *
  */
 public class MyHashTable {
