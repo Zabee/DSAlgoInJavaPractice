@@ -13,6 +13,10 @@ public class MyStackUsingArray<T> {
 
 	private T[] values;
 	private int top = -1;
+	public int getTop() {
+		return top;
+	}
+
 	private Class thisClass;
 
 	public boolean isEmpty() {
