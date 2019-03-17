@@ -5,23 +5,23 @@ public class SortStackMinAtTop {
 	private static MyStackUsingArray<Integer> tStack = new MyStackUsingArray<>(Integer.class, 10);
 
 	public static void main(String[] args) {
-		oStack.push(1);
-		oStack.push(2);
-		oStack.push(3);
-		oStack.push(4);
-		oStack.push(5);
-		oStack.push(6);
-		oStack.printEntireStack();
 		oStack = new MyStackUsingArray<>(Integer.class, 10);
 		System.out.println("*******************************");
 		push(1);
 		push(2);
-		push(3);
+		push(-3);
 		push(4);
-		push(5);
+		push(-5);
 		push(6);
 
 		oStack.printEntireStack();
+		
+		System.out.println(oStack.pop());
+		System.out.println(oStack.pop());
+		System.out.println(oStack.pop());
+		System.out.println(oStack.pop());
+		System.out.println(oStack.pop());
+		System.out.println(oStack.pop());
 	}
 
 	private static void push(int element) {
