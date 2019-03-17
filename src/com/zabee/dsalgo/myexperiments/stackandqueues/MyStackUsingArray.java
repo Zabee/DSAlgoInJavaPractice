@@ -2,11 +2,22 @@ package com.zabee.dsalgo.myexperiments.stackandqueues;
 
 import java.lang.reflect.Array;
 
+/**
+ * Generic resizing stack. Cool, isn't it?
+ * 
+ * @author Zabee
+ *
+ * @param <T>
+ */
 public class MyStackUsingArray<T> {
 
 	private T[] values;
 	private int top = -1;
 	private Class thisClass;
+
+	public boolean isEmpty() {
+		return top == -1;
+	}
 
 	public MyStackUsingArray(Class<T> c, int size) {
 //		@Suppr	essWarnings("unchecked")
@@ -38,11 +49,11 @@ public class MyStackUsingArray<T> {
 	}
 
 	public T pop() {
-		if(values.length == 0) {
+		if (isEmpty()) {
 			System.out.println("Cannot pop anything from an empty stack");
 			return null;
 		}
-			
+
 		return values[top--];
 	}
 
@@ -65,7 +76,7 @@ public class MyStackUsingArray<T> {
 		stack.push(3);
 		stack.push(4);
 		stack.printEntireStack();
-		
+
 		System.out.println(stack.pop());
 		stack.push(5);
 		stack.printEntireStack();

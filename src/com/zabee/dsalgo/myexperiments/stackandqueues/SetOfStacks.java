@@ -16,8 +16,11 @@ public class SetOfStacks {
 		push(20);
 		push(20);
 		push(20);
+		push(30);
+		push(30);
+		push(30);
 		System.out.println("Pushing ends here!!");
-
+		popAtIndex(2);
 		System.out.println(pop());
 		System.out.println(pop());
 		System.out.println(pop());
@@ -43,10 +46,66 @@ public class SetOfStacks {
 		}
 		last = getLastStack();
 		int value = last.pop();
-		if (last.isStackEmpty()) {
+		if (last.isEmpty()) {
 			setOfStacks.remove(setOfStacks.size() - 1);
 		}
 		return value;
+	}
+
+	/**
+	 * It takes to implement SimpleStack with LinkedList instead of Arrays
+	 * 
+	 * @param index
+	 * @param removeTop
+	 * @return
+	 */
+//	public static int popAtIndexRecursively(int index, boolean removeTop) {
+//		int removedItem;
+//		SimpleStack stack = setOfStacks.get(index);
+//		if (removeTop) {
+//			removedItem = stack.pop();
+//		} else {
+//			removedItem = stack.removeBottom();
+//		}
+//		if (stack.isEmpty()) {
+//			setOfStacks.remove(index);
+//		} else if (setOfStacks.size() > index + 1) {
+//			int v = popAtIndexRecursively(index + 1, false);
+//			stack.push(v);
+//		}
+//		return removedItem;
+//	}
+
+	public static int popAtIndex(int index) {
+		// Index is starting from zero
+		index--;
+		int returnValue = -1;
+		try {
+			if (index > setOfStacks.size()) {
+				throw new ArrayIndexOutOfBoundsException();
+			}
+			// index is already decremented by 1
+			last = setOfStacks.get(index);
+			returnValue = last.pop();
+			if (last.isEmpty()) {
+				setOfStacks.remove(index);
+			} else {
+				leftShift(index);
+			}
+
+		} catch (ArrayIndexOutOfBoundsException ioE) {
+			System.out.println("Index of out of array stack bound");
+		}
+		return returnValue;
+	}
+
+	private static void leftShift(int index) {
+		SimpleStack curr, next;
+		for (int i = index; i < setOfStacks.size() - 1; i++) {
+			curr = setOfStacks.get(i);
+			next = setOfStacks.get(i + 1);
+			curr.push(next.pop());
+		}
 	}
 
 	private static boolean areAllStacksEmpty() {
@@ -102,7 +161,7 @@ class SimpleStack {
 		values[++top] = argElement;
 	}
 
-	public boolean isStackEmpty() {
+	public boolean isEmpty() {
 		if (top == -1) {
 			System.out.println("Stack is empty!");
 			return true;
@@ -111,7 +170,7 @@ class SimpleStack {
 	}
 
 	public int pop() {
-		if (isStackEmpty()) {
+		if (isEmpty()) {
 			return -1;
 		}
 		return values[top--];
