@@ -4,8 +4,7 @@ import org.junit.Ignore;
 
 import junit.framework.TestCase;
 
-public class CheckForHeapTests extends TestCase {
-	@Ignore
+public class TestCheckForHeapLinkedList extends TestCase {
 	public void testMinHeap() {
 		// This is min heap
 		Node root = new Node(1);
@@ -18,7 +17,7 @@ public class CheckForHeapTests extends TestCase {
 
 		root.right.left = new Node(6);
 		root.right.right = new Node(7);
-		assertTrue(CheckGivenTreeIsHeap.isMinHeap(root));
+		assertTrue(CheckGivenTreeIsHeapLinkedList.isMinHeap(root));
 
 		// This is not min heap. One of left root value is bigger than children
 		root = new Node(1);
@@ -31,7 +30,7 @@ public class CheckForHeapTests extends TestCase {
 
 		root.right.left = new Node(6);
 		root.right.right = new Node(7);
-		assertFalse(CheckGivenTreeIsHeap.isMinHeap(root));
+		assertFalse(CheckGivenTreeIsHeapLinkedList.isMinHeap(root));
 
 		// This is not min heap. One of right root value is bigger than children
 		root = new Node(1);
@@ -44,11 +43,11 @@ public class CheckForHeapTests extends TestCase {
 
 		root.right.left = new Node(6);
 		root.right.right = new Node(7);
-		assertFalse(CheckGivenTreeIsHeap.isMinHeap(root));
+		assertFalse(CheckGivenTreeIsHeapLinkedList.isMinHeap(root));
 
 		// This is heap not heap. Left child is missing but has right child
 		root = new Node(1);
-		assertTrue(CheckGivenTreeIsHeap.isMinHeap(root));
+		assertTrue(CheckGivenTreeIsHeapLinkedList.isMinHeap(root));
 
 		root = new Node(1);
 
@@ -59,7 +58,7 @@ public class CheckForHeapTests extends TestCase {
 		root.left.right = new Node(5);
 
 		root.right.right = new Node(7);
-		assertFalse(CheckGivenTreeIsHeap.isMaxHeap(root));
+		assertFalse(CheckGivenTreeIsHeapLinkedList.isMaxHeap(root));
 	}
 
 	public void testMaxHeap() {
@@ -74,7 +73,7 @@ public class CheckForHeapTests extends TestCase {
 
 		root.right.left = new Node(15);
 		root.right.right = new Node(10);
-		assertTrue(CheckGivenTreeIsHeap.isMaxHeap(root));
+		assertTrue(CheckGivenTreeIsHeapLinkedList.isMaxHeap(root));
 
 		// This is max heap. One of right is missing
 		root = new Node(50);
@@ -86,7 +85,7 @@ public class CheckForHeapTests extends TestCase {
 		root.left.right = new Node(25);
 
 		root.right.left = new Node(15);
-		assertTrue(CheckGivenTreeIsHeap.isMaxHeap(root));
+		assertTrue(CheckGivenTreeIsHeapLinkedList.isMaxHeap(root));
 
 		// This is max heap. One of right is missing
 		root = new Node(50);
@@ -98,7 +97,7 @@ public class CheckForHeapTests extends TestCase {
 
 		root.right.left = new Node(15);
 		root.right.right = new Node(10);
-		assertTrue(CheckGivenTreeIsHeap.isMaxHeap(root));
+		assertTrue(CheckGivenTreeIsHeapLinkedList.isMaxHeap(root));
 		
 		// This is not max heap. One left is missing
 		root = new Node(50);
@@ -110,7 +109,7 @@ public class CheckForHeapTests extends TestCase {
 
 		root.right.left = new Node(15);
 		root.right.right = new Node(10);
-		assertFalse(CheckGivenTreeIsHeap.isMaxHeap(root));
+		assertFalse(CheckGivenTreeIsHeapLinkedList.isMaxHeap(root));
 		
 		// This is not max heap. One left is missing
 		root = new Node(50);
@@ -122,7 +121,7 @@ public class CheckForHeapTests extends TestCase {
 		root.left.right = new Node(25);
 
 		root.right.right = new Node(10);
-		assertFalse(CheckGivenTreeIsHeap.isMaxHeap(root));
+		assertFalse(CheckGivenTreeIsHeapLinkedList.isMaxHeap(root));
 
 		//This is not max heap. One of root is lesser than its children
 		root = new Node(50);
@@ -135,6 +134,6 @@ public class CheckForHeapTests extends TestCase {
 
 		root.right.left = new Node(15);
 		root.right.right = new Node(10);
-		assertFalse(CheckGivenTreeIsHeap.isMaxHeap(root));
+		assertFalse(CheckGivenTreeIsHeapLinkedList.isMaxHeap(root));
 	}
 }
