@@ -14,9 +14,9 @@ public class MaxHeapTreeOfCourseUsingArray {
 	 */
 	private void insertToHeap(final int x) {
 		heapArray[++size] = x;
-//		heapify(0); Calling heapify(0) will not work for the reason that heapify(0) has a termintaion condition as part of its recursion that if not leaf node
+//		heapify(0); Calling heapify(0) will not work for the reason that heapify(0) has a termination condition as part of its recursion that if not leaf node
 //		but I need to apply rule for all the nodes and at the same time I cannot remove that condition. If I remove then I don't have any other recursion
-//		termination conidtion. So, different simple fix for this
+//		termination condition. So, different simple fix for this
 		int current = size;
 //		I have inserted at last. Of course I must check parent not any children. I doesn't have any children, man, try to understand :D 
 		while (heapArray[current] > heapArray[getParentIndex(current)]) {
@@ -53,7 +53,7 @@ public class MaxHeapTreeOfCourseUsingArray {
 	}
 
 	/**
-	 * O(log n) Only half of the nodes gonna be operated upon
+	 * O(log n) Only half of the nodes will be operated upon
 	 * 
 	 * @return
 	 */
