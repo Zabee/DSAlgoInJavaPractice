@@ -4,7 +4,7 @@ import java.util.Stack;
 
 /**
  * Using an external Stack
- * 
+ * Below are form of DFS - Depth first traversal.
  * PreOrder traversal [1 2 4 8 9 5 3 6 7] InOrder traversal [2 4 8 9 5 1 3 6 7]
  * PostOrder traversal [2 4 8 9 5 3 6 7 1]
  * 
