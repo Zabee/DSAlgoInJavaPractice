@@ -57,6 +57,19 @@ public class Graph {
 		}
 	}
 
+	public void DFS(GraphNode graphRoot) {
+		if (graphRoot == null) {
+			return;
+		}
+		System.out.print("|" + graphRoot.data + "|");
+		for (GraphNode gNode : graphRoot.getAllChildren()) {
+			if (gNode.visited == false) {
+				gNode.visited = true;
+				DFS(gNode);
+			}
+		}
+	}
+	
 	public void BFS() {
 		clearVisitedFlagForAll();
 		Queue<GraphNode> queue = new LinkedList<GraphNode>();
@@ -76,11 +89,22 @@ public class Graph {
 		}
 	}
 	
-	public void DFS() {
-		
-	}
-	
-	public boolean isPathBetween(GraphNode gNode1, GraphNode gNode2) {
+	public boolean isPathBetween(GraphNode src, GraphNode dst) {
+		Queue<GraphNode> queue = new LinkedList<>();
+		queue.add(src);
+		GraphNode temp = null;
+		while (!queue.isEmpty()) {
+			temp = queue.remove();
+			if (temp.data == dst.data) {
+				return true;
+			}
+			for (GraphNode graphNode : temp.getAllChildren()) {
+				if (!graphNode.visited) {
+					graphNode.visited = true;
+					queue.add(graphNode);
+				}
+			}
+		}
 		return false;
 	}
 	
@@ -116,7 +140,7 @@ public class Graph {
 	 * 		|
 	 * 		6 - 0
 	 */
-	public static void main(String[] args) {
+	public static void main(String... args) {
 		Graph graph = new Graph();
 		for(int i=0; i<=10; i++) {
 			graph.createOrGetNode(i);	
@@ -153,13 +177,25 @@ public class Graph {
 		
 		//For 10 nothing
 		
+		if (args.length > 0) {
+			// This class is called from another class. So, let's entertain it.
+			System.out.println(
+					"\n\nIs there a path between " + Integer.valueOf(args[0]) + " and " + Integer.valueOf(args[1])
+							+ ": " + graph.isPathBetween(graph.createOrGetNode(Integer.valueOf(args[0])),
+									graph.createOrGetNode(Integer.valueOf(args[1]))));
+			return;
+		}
 		System.out.println("\nBreadth First Search traversal of the graph");
 		graph.BFS();
+		graph.clearVisitedFlagForAll();
 		
 		System.out.println("\n\nDepth First Search traversal of the graph");
-		graph.DFS();
+		graph.DFS(graph.graphRoot);
+		graph.clearVisitedFlagForAll();
 		
 		System.out.println("\n\nIs there a path between 1 and 0?: " + graph.isPathBetween(graph.createOrGetNode(1), graph.createOrGetNode(0)));
+		graph.clearVisitedFlagForAll();
+		
 		System.out.println("\n\nIs there a path between 0 and 1?: " + graph.isPathBetween(graph.createOrGetNode(0), graph.createOrGetNode(1)));
 		
 		
