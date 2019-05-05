@@ -1,4 +1,4 @@
-package practice.concepts;
+package justJavaPractice;
 
 import java.io.File;
 import java.io.FileInputStream;

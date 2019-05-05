@@ -1,4 +1,4 @@
-package practice.concepts;
+package justJavaPractice;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package practice.concepts;
+package justJavaPractice;
 
 public class ArrayAndEnum {
 	final static int x = 10;

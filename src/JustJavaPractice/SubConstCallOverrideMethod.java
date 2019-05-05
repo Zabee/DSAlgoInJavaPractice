@@ -1,4 +1,4 @@
-package practice.concepts;
+package justJavaPractice;
 
 public class SubConstCallOverrideMethod {
 

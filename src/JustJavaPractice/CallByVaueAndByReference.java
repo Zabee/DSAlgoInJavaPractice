@@ -1,4 +1,4 @@
-package practice.concepts;
+package justJavaPractice;
 
 /**
  * Everything is call by value but with Objects and arrays (int []) a copy of

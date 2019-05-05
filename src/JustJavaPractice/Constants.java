@@ -1,4 +1,4 @@
-package practice.concepts;
+package justJavaPractice;
 
 /**
  * Enum is like MAP.

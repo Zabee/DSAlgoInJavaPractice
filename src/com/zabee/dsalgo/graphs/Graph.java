@@ -10,15 +10,11 @@ import java.util.Queue;
 /**
  * Below is a sample graph
  * 
- *		1 - 2 - 3 - 4
- * 		|		    | 	
- * 		5 - 7 - 8 - 9 - 10	
- * 		|
- * 		6 - 0
+ * 1 - 2 - 3 - 4 | | 5 - 7 - 8 - 9 - 10 | 6 - 0
  * 
- * 	It's a directed graph. So, 1 to 5 is possible but not 5 to 1.
+ * It's a directed graph. So, 1 to 5 is possible but not 5 to 1.
  * 
- * @author Zabee 
+ * @author Zabee
  *
  */
 public class Graph {
@@ -38,7 +34,7 @@ public class Graph {
 //			System.out.println("Created " + argData);
 			graphNodeMap.put(graphNode.data, graphNode);
 			nodes.add(graphNode);
-			if(argData == 1) {
+			if (argData == 1) {
 				graphRoot = graphNode;
 			}
 		}
@@ -69,7 +65,7 @@ public class Graph {
 			}
 		}
 	}
-	
+
 	public void BFS() {
 		clearVisitedFlagForAll();
 		Queue<GraphNode> queue = new LinkedList<GraphNode>();
@@ -88,7 +84,7 @@ public class Graph {
 			}
 		}
 	}
-	
+
 	public boolean isPathBetween(GraphNode src, GraphNode dst) {
 		Queue<GraphNode> queue = new LinkedList<>();
 		queue.add(src);
@@ -107,7 +103,7 @@ public class Graph {
 		}
 		return false;
 	}
-	
+
 	private class GraphNode {
 		private int data;
 		private List<GraphNode> adjacentNodes = new ArrayList<GraphNode>();
@@ -128,55 +124,52 @@ public class Graph {
 		public int getNodeChildrenCount() {
 			return adjacentNodes.size();
 		}
-		
-		public List<GraphNode> getAllChildren(){
+
+		public List<GraphNode> getAllChildren() {
 			return adjacentNodes;
 		}
 	}
 
-	 /*		1 - 2 - 3 - 4
-	 * 		|		    | 	
-	 * 		5 - 7 - 8 - 9 - 10	
-	 * 		|
-	 * 		6 - 0
+	/*
+	 * 1 - 2 - 3 - 4 | | 5 - 7 - 8 - 9 - 10 | 6 - 0
 	 */
 	public static void main(String... args) {
 		Graph graph = new Graph();
-		for(int i=0; i<=10; i++) {
-			graph.createOrGetNode(i);	
+		for (int i = 0; i <= 10; i++) {
+			graph.createOrGetNode(i);
 		}
-		//For 0 nothing 
-		//For 1 
+		// For 0 nothing
+		// For 1
 		graph.addEdge(graph.createOrGetNode(1), graph.createOrGetNode(2));
 		graph.addEdge(graph.createOrGetNode(1), graph.createOrGetNode(5));
-		
-		//For 2
+
+		// For 2
 		graph.addEdge(graph.createOrGetNode(2), graph.createOrGetNode(3));
 
-		//For 3
+		// For 3
 		graph.addEdge(graph.createOrGetNode(3), graph.createOrGetNode(4));
 
-		//For 4
+		// For 4
 		graph.addEdge(graph.createOrGetNode(4), graph.createOrGetNode(9));
 
-		//For 5
+		// For 5
 		graph.addEdge(graph.createOrGetNode(5), graph.createOrGetNode(6));
 		graph.addEdge(graph.createOrGetNode(5), graph.createOrGetNode(7));
-		
-		//For 6
+
+		// For 6
 		graph.addEdge(graph.createOrGetNode(6), graph.createOrGetNode(0));
-		
-		//For 7
+
+		// For 7
 		graph.addEdge(graph.createOrGetNode(7), graph.createOrGetNode(8));
-		
-		//For 8
+
+		// For 8
 		graph.addEdge(graph.createOrGetNode(8), graph.createOrGetNode(9));
 
-		//For 9
+		// For 9
 		graph.addEdge(graph.createOrGetNode(9), graph.createOrGetNode(10));
-		
-		//For 10 nothing
-		
+
+		// For 10 nothing
+
 		if (args.length > 0) {
 			// This class is called from another class. So, let's entertain it.
 			System.out.println(
@@ -188,16 +181,17 @@ public class Graph {
 		System.out.println("\nBreadth First Search traversal of the graph");
 		graph.BFS();
 		graph.clearVisitedFlagForAll();
-		
+
 		System.out.println("\n\nDepth First Search traversal of the graph");
 		graph.DFS(graph.graphRoot);
 		graph.clearVisitedFlagForAll();
-		
-		System.out.println("\n\nIs there a path between 1 and 0?: " + graph.isPathBetween(graph.createOrGetNode(1), graph.createOrGetNode(0)));
+
+		System.out.println("\n\nIs there a path between 1 and 0?: "
+				+ graph.isPathBetween(graph.createOrGetNode(1), graph.createOrGetNode(0)));
 		graph.clearVisitedFlagForAll();
-		
-		System.out.println("\n\nIs there a path between 0 and 1?: " + graph.isPathBetween(graph.createOrGetNode(0), graph.createOrGetNode(1)));
-		
-		
+
+		System.out.println("\n\nIs there a path between 0 and 1?: "
+				+ graph.isPathBetween(graph.createOrGetNode(0), graph.createOrGetNode(1)));
+
 	}
 }
