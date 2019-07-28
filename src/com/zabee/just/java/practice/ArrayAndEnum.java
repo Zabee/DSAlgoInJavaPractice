@@ -22,7 +22,8 @@ public class ArrayAndEnum {
 				System.out.println(x);
 			}
 			System.out.println("Ordinal i.e. the position:\"" + Constants.ONE.ordinal() + "\"");
-			System.out.println("Name i.e. kind of a key:\"" + Constants.TWO + "\"");
+			System.out.println("Kind of a key object itself but toString prints the name:\"" + Constants.TWO + "\"");
+			System.out.println("Name i.e. explicitly calling the name:\"" + Constants.TWO + "\"");
 			System.out.println("Value associated with the kind of a key i.e. the member variable of ENUM:\""
 					+ Constants.THREE.someX + "\"");
 			System.out.println("Value associated with the kind of a key i.e. the member variable of ENUM:\""
