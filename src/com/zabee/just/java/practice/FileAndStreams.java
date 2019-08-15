@@ -18,7 +18,7 @@ import java.util.Scanner;
  * delete, exists, rename, getPath, getAbsolutePath etc.,
  * 
  * Yeah, I know I could have made Stream members and reused them, but this is
- * for just only for practice I wanted to create and excercise try with resource
+ * for just only for practice I wanted to create and exercise try with resource
  * mutiple times, so chill and enjoy Reading and Writing with Files
  * ================================ Want to handle character by character?
  * Reader, Writer (FileReader, FileWriter)
