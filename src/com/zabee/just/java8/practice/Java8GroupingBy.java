@@ -40,8 +40,7 @@ public class Java8GroupingBy {
 		// List people name as the key and list of objects as value. Duplicate
 		// values live in that list. For e.g. Sara or Jack in our case
 		System.out.println(people.stream()//
-				.collect(Collectors.//
-						groupingBy(p -> p.getName())));
+				.collect(Collectors.groupingBy(p -> p.getName())));
 
 		// List people name as the key and list of age the value. Duplicate
 		// values live in that list. For e.g. Sara or Jack in our case
