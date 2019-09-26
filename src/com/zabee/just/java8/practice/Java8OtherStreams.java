@@ -1,5 +1,7 @@
 package com.zabee.just.java8.practice;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
@@ -7,6 +9,10 @@ import java.util.stream.LongStream;
 public class Java8OtherStreams {
 
 	public static void main(String[] args) {
+		List<String> integersList = Arrays.asList("1","2","3","4","5","6","7","8","9","10","11","12");
+		System.out.println(integersList.stream().mapToLong(str -> Integer.valueOf(str)).sum());
+		System.exit(0);
+		
 		IntStream.iterate(0, i -> (i + 1) % 2)//
 		.limit(10)//
 		.distinct()//
@@ -54,7 +60,6 @@ public class Java8OtherStreams {
 				.skip(5)//
 				.limit(10)//
 				.forEach(System.out::println);
-
 		System.out.println("========================== limit(10) then skip(5)");
 		IntStream.iterate(1, i -> ++i)//
 				.limit(10)//
@@ -74,4 +79,10 @@ public class Java8OtherStreams {
 				})//
 				.forEach(i -> i++);
 	}
+	
+
+	
+	
+	
+	
 }
