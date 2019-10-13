@@ -1,12 +1,12 @@
-package com.zabee.just.java.concurrency;
+package com.zabee.just.java.concurrent;
 
 public class ThreadCreationDemo {
 	public static void main(String[] args) {
 		System.out.println("Entered main and then sleeping for 4 seconds");
 		try {
-			Thread.interrupted();
 			Thread.sleep(1000);
 			thread1.start();
+			thread1.interrupt();
 			thread2.start();
 			thread3Wrapper.start();
 			externalThreadWrapper.start();
