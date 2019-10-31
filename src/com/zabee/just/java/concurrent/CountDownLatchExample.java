@@ -3,6 +3,11 @@ package com.zabee.just.java.concurrent;
 import java.util.concurrent.CountDownLatch;
 import java.util.stream.Stream;
 
+/**
+ * CountDownLatch says I am done you start where as CyclicBarrier says let's start together
+ * @author zulla
+ *
+ */
 public class CountDownLatchExample {
 
 	public static void main(String[] args) throws InterruptedException {
@@ -44,6 +49,7 @@ public class CountDownLatchExample {
 					.limit(3000)//
 					.forEach(i -> this.resource.incrementProgramCounter(1));
 			cntDownLatch.countDown();
+			
 		}
 	}
 }

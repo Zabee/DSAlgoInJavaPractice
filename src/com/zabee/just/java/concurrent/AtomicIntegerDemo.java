@@ -15,6 +15,7 @@ public class AtomicIntegerDemo {
 		}
 		execService.awaitTermination(10, TimeUnit.SECONDS);
 		System.out.println(actCounter.getValue());
+		execService.shutdown();
 	}
 }
 

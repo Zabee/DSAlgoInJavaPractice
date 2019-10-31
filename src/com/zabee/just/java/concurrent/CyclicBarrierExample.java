@@ -6,6 +6,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * CyclicBarrier says let's wait for every other thread where CountDownLatch
+ * says I am done anyone of you may start
+ * 
+ * @author zulla
+ *
+ */
 public class CyclicBarrierExample {
 
 	public static void main(String[] args) throws InterruptedException {
@@ -21,8 +28,8 @@ public class CyclicBarrierExample {
 		execService.awaitTermination(10, TimeUnit.SECONDS);
 		execService.shutdown();
 
-		System.out.println("Submitting a new task");
-		execService.submit(new Worker(cyclicBarrier));
+//		System.out.println("Submitting a new task");
+//		execService.submit(new Worker(cyclicBarrier));
 	}
 
 	private static class Worker extends Thread {
