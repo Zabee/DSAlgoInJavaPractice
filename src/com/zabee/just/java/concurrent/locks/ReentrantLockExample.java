@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Stream;
 
@@ -13,9 +14,9 @@ public class ReentrantLockExample {
 	public static void main(String[] args) throws InterruptedException {
 		ReentrantLock reentrantLock = new ReentrantLock(true);
 		ConcurrentLinkedQueue<Integer> resourceQueue = new ConcurrentLinkedQueue<>();
-			Stream.iterate(0, i -> ++i)//
-					.limit(10)//
-					.forEach(i -> resourceQueue.add(i));
+		Stream.iterate(0, i -> ++i)//
+				.limit(10)//
+				.forEach(i -> resourceQueue.add(i));
 		ExecutorService workerThreadsexecService = Executors.newFixedThreadPool(6);
 		MyWorkerThread myWorkerThread1 = new MyWorkerThread(reentrantLock, resourceQueue);
 		MyWorkerThread myWorkerThread2 = new MyWorkerThread(reentrantLock, resourceQueue);
@@ -27,10 +28,16 @@ public class ReentrantLockExample {
 		List<MyWorkerThread> workers = Arrays.asList(myWorkerThread1, myWorkerThread2, myWorkerThread3, myWorkerThread4,
 				myWorkerThread5, myWorkerThread6);
 		workers.forEach(worker -> workerThreadsexecService.submit(worker));
-		for(MyWorkerThread worker : workers) {
+		for (MyWorkerThread worker : workers) {
 			worker.join();
 		}
-		Thread.sleep(1000);
+		try {
+			TimeUnit.SECONDS.sleep(1);
+			//OR
+//			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+
+		}
 		resourceQueue.forEach(i -> System.out.print(i));
 		workerThreadsexecService.shutdown();
 	}

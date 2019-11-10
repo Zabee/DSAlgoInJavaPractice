@@ -19,11 +19,11 @@ import java.util.Scanner;
  * 
  * Yeah, I know I could have made Stream members and reused them, but this is
  * for just only for practice I wanted to create and exercise try with resource
- * mutiple times, so chill and enjoy Reading and Writing with Files
+ * multiple times, so chill and enjoy Reading and Writing with Files
  * ================================ Want to handle character by character?
  * Reader, Writer (FileReader, FileWriter)
  * 
- * Want to handle byte by bye? InputStream, OutputStream
+ * Want to handle byte by bye? InputStream, OutputStream -> FileInputStream and FileOutputStream
  * 
  * And little bit of reflection but never mind I will cover reflection in
  * another program
@@ -166,7 +166,7 @@ public class FileAndStreams {
 			}
 		}
 		// 2 ways
-		// (1) Append to stringBuilder and write a fresh (yeah, that's what it do write
+		// (1) Append to stringBuilder and write a fresh (yeah, that's what it does, write
 		// freshly)
 		// (2) Open FileWrite in append mode and write
 

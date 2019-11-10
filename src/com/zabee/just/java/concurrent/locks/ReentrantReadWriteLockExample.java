@@ -5,95 +5,105 @@ import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
-import java.util.stream.Stream;
 
 public class ReentrantReadWriteLockExample extends ReentrantLockExample {
 
 	public static void main(String[] args) throws InterruptedException {
-		ReentrantReadWriteLock reentrantRWLock = new ReentrantReadWriteLock(true);
-		ConcurrentLinkedQueue<Integer> resourceQueue = new ConcurrentLinkedQueue<>();
-		Stream.iterate(0, i -> ++i)//
-				.limit(10)//
-				.forEach(i -> resourceQueue.add(i));
+		Resource resource = new Resource();
 		ExecutorService workerThreadsexecService = Executors.newFixedThreadPool(6);
-		MyWriterThread myWriterThread1 = new MyWriterThread(reentrantRWLock, resourceQueue);
-		MyWriterThread myWriterThread2 = new MyWriterThread(reentrantRWLock, resourceQueue);
-		MyWriterThread myWriterThread3 = new MyWriterThread(reentrantRWLock, resourceQueue);
-		MyWriterThread myWriterThread4 = new MyWriterThread(reentrantRWLock, resourceQueue);
-		MyWriterThread myWriterThread5 = new MyWriterThread(reentrantRWLock, resourceQueue);
-		MyWriterThread myWriterThread6 = new MyWriterThread(reentrantRWLock, resourceQueue);
-		MyReaderThread myReaderThread1 = new MyReaderThread(reentrantRWLock, resourceQueue);
-		MyReaderThread myReaderThread2 = new MyReaderThread(reentrantRWLock, resourceQueue);
+		// Writer threads
+		MyWriterThread myWriterThread1 = new MyWriterThread(resource);
+		MyWriterThread myWriterThread2 = new MyWriterThread(resource);
+		MyWriterThread myWriterThread3 = new MyWriterThread(resource);
+		MyWriterThread myWriterThread4 = new MyWriterThread(resource);
+		MyWriterThread myWriterThread5 = new MyWriterThread(resource);
+		MyWriterThread myWriterThread6 = new MyWriterThread(resource);
 
-		List<Thread> workers = Arrays.asList(myWriterThread1, myWriterThread2, myWriterThread3, myWriterThread4,
-				myWriterThread5, myWriterThread6, myReaderThread1, myReaderThread2);
+		// Reader threads
+		MyReaderThread myReaderThread1 = new MyReaderThread(resource);
+		MyReaderThread myReaderThread2 = new MyReaderThread(resource);
+
+		List<Thread> workers = Arrays.asList(myWriterThread1, myWriterThread2, myWriterThread3,
+				myWriterThread4, myWriterThread5, myReaderThread1, myReaderThread2, myWriterThread6);
 		workers.forEach(worker -> workerThreadsexecService.submit(worker));
 		for (Thread worker : workers) {
 			worker.join();
 		}
-		Thread.sleep(40000);
+		workerThreadsexecService.awaitTermination(4, TimeUnit.SECONDS);
+//		Thread.sleep(40000);
 		System.out.println("Final output::");
-		resourceQueue.forEach(i -> System.out.print(i));
+		resource.readFromResource();
 		workerThreadsexecService.shutdown();
 	}
 
 	private static class MyReaderThread extends Thread {
-		private final ReentrantReadWriteLock reentrantRWLock;
-		private final ConcurrentLinkedQueue<Integer> thisResourceQueue;
-//		private static int threadCnt = 0;
+		private final Resource resource;
 
-		private MyReaderThread(final ReentrantReadWriteLock argReentrantRWLock,
-				final ConcurrentLinkedQueue<Integer> argResourceQueue) {
-			this.thisResourceQueue = argResourceQueue;
-			reentrantRWLock = argReentrantRWLock;
+		private MyReaderThread(final Resource argResource) {
+			this.resource = argResource;
 		}
 
 		@Override
 		public void run() {
-			ReadLock readLock = reentrantRWLock.readLock();
-			readLock.lock();
-			System.out.println("No write lock found. So, reading the resource");
-			System.out.println("====================================================");
-			thisResourceQueue.forEach(System.out::print);
-			System.out.println("\n====================================================");
+			resource.readFromResource();
 		}
 	}
 
 	private static class MyWriterThread extends Thread {
-		private final ReentrantReadWriteLock reentrantRWLock;
-		private final ConcurrentLinkedQueue<Integer> thisResourceQueue;
-//		private static int threadCnt = 0;
+		private Resource resource;
 
-		private MyWriterThread(final ReentrantReadWriteLock argReentrantRWLock,
-				final ConcurrentLinkedQueue<Integer> argResourceQueue) {
-			this.thisResourceQueue = argResourceQueue;
-			reentrantRWLock = argReentrantRWLock;
+		private MyWriterThread(final Resource argResource) {
+			this.resource = argResource;
 		}
 
 		@Override
 		public void run() {
-			WriteLock writeLock = null;
 			try {
-				// Rest for 4 seconds
-				Thread.sleep(4000);
-//				System.out.println("Before acquiring the lock");
-				writeLock = reentrantRWLock.writeLock();
-				writeLock.lock();
-				ConcurrentLinkedQueue<Integer> myQueue = new ConcurrentLinkedQueue<>();
-				thisResourceQueue.forEach(i -> myQueue.add(++i));
-				thisResourceQueue.clear();
-				myQueue.forEach(i -> thisResourceQueue.add(i));
-//				System.out.println("Updated the queue" + ++threadCnt);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+			resource.updateResource();
+		}
+	}
+
+	private static class Resource {
+		private final ConcurrentLinkedQueue<Integer> thisResourceQueue;
+		private final ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock(true);
+		private final WriteLock writeLock = readWriteLock.writeLock();
+		private final ReadLock readLock = readWriteLock.readLock();
+		private int lastUpdatedValue = 1;
+		private final int uniformAmountOfWork = 5;
+
+		public Resource() {
+			this.thisResourceQueue = new ConcurrentLinkedQueue<>();
+		}
+
+		public void readFromResource() {
+			try {
+				readLock.lock();
+				System.out.println("Reading form the resource");
+				thisResourceQueue.stream().forEach(i -> System.out.print(i + "|"));
+				System.out.println();
+			} finally {
+				readLock.unlock();
+			}
+		}
+
+		public void updateResource() {
+			try {
+				writeLock.lock();
+				for (int i = lastUpdatedValue; i < lastUpdatedValue + uniformAmountOfWork; i++) {
+					this.thisResourceQueue.add(i);
+				}
+				lastUpdatedValue = lastUpdatedValue + uniformAmountOfWork;
 			} finally {
 				writeLock.unlock();
 			}
-
 		}
 	}
 }

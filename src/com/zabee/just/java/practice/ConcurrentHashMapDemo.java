@@ -4,10 +4,10 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class ConHashMap {
+public class ConcurrentHashMapDemo {
 
 	public static void main(String[] args) {
-		ConcurrentHashMap<Integer, Integer> conMap = new ConcurrentHashMap<>();
+		ConcurrentHashMap<Integer, Integer> conMap = new ConcurrentHashMap<>(/* 1, 1, 1 */);
 		for(int i=0; i<10; i++) {
 			conMap.put(i, i);
 			if(i==7) {

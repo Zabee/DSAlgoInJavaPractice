@@ -1,0 +1,1 @@
+This is file which is written and read by java.io.BufferedWriter and java.io.BufferedReader classes!!

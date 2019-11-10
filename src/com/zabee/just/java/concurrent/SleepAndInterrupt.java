@@ -33,8 +33,11 @@ class MyThread extends Thread {
 	@Override
 	public void run() {
 		try {
-			Thread.sleep(100000);
+			synchronized (this) {
+				wait(100000);
+			}
 		} catch (InterruptedException e) {
+			System.out.println("Haha");
 			e.printStackTrace();
 		}
 		System.out.println("MyThread Woke up!!");

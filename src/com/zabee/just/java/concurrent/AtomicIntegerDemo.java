@@ -11,7 +11,11 @@ public class AtomicIntegerDemo {
 		AtomicCounter actCounter = new AtomicCounter();
 		ExecutorService execService = Executors.newFixedThreadPool(10);
 		for (int i = 0; i < 100; i++) {
-			execService.submit(() -> actCounter.increment());
+			if (i % 2 == 0) {
+				execService.submit(() -> actCounter.increment());
+			} else {
+				execService.submit(() -> actCounter.decrement());
+			}
 		}
 		execService.awaitTermination(10, TimeUnit.SECONDS);
 		System.out.println(actCounter.getValue());
