@@ -7,7 +7,7 @@ public class MinHeapTreeOfCourseUsingArray {
 	private StringBuilder strBuilder = new StringBuilder();
 
 	public MinHeapTreeOfCourseUsingArray() {
-		heapArray = new int[10];
+		heapArray = new int[20];
 		size = -1;
 	}
 
@@ -15,7 +15,6 @@ public class MinHeapTreeOfCourseUsingArray {
 		temp = heapArray[oneIndex];
 		heapArray[oneIndex] = heapArray[otherIndex];
 		heapArray[otherIndex] = temp;
-
 	}
 
 	/**
@@ -71,9 +70,9 @@ public class MinHeapTreeOfCourseUsingArray {
 	 * @return
 	 */
 	public static boolean isMinHeap(final int[] argHeapArray, final int size) {
-		MinHeapTreeOfCourseUsingArray thiss = new MinHeapTreeOfCourseUsingArray();
+		MinHeapTreeOfCourseUsingArray minHeap = new MinHeapTreeOfCourseUsingArray();
 		for (int i = 1, parent = -1; i < size; i++) {
-			parent = thiss.getParentIndex(i);
+			parent = minHeap.getParentIndex(i);
 			if (argHeapArray[parent] > argHeapArray[i])
 				return false;
 		}
@@ -137,20 +136,25 @@ public class MinHeapTreeOfCourseUsingArray {
 
 	public static void main(String[] args) {
 		MinHeapTreeOfCourseUsingArray heapTreeOfCourseUsingArray = new MinHeapTreeOfCourseUsingArray();
-		heapTreeOfCourseUsingArray.insertToHeap(1);
-		heapTreeOfCourseUsingArray.insertToHeap(2);
-		heapTreeOfCourseUsingArray.insertToHeap(3);
-		heapTreeOfCourseUsingArray.insertToHeap(4);
-		heapTreeOfCourseUsingArray.insertToHeap(5);
-		heapTreeOfCourseUsingArray.insertToHeap(6);
+		heapTreeOfCourseUsingArray.insertToHeap(13);
+		heapTreeOfCourseUsingArray.insertToHeap(12);
 		heapTreeOfCourseUsingArray.insertToHeap(7);
-
-		System.out.println(heapTreeOfCourseUsingArray.toString());
-
-		heapTreeOfCourseUsingArray.extractMin();
+		heapTreeOfCourseUsingArray.insertToHeap(11);
 		heapTreeOfCourseUsingArray.insertToHeap(9);
-		heapTreeOfCourseUsingArray.insertToHeap(99);
+		heapTreeOfCourseUsingArray.insertToHeap(8);
+		heapTreeOfCourseUsingArray.insertToHeap(10);
+		heapTreeOfCourseUsingArray.insertToHeap(6);
+		heapTreeOfCourseUsingArray.insertToHeap(4);
+		heapTreeOfCourseUsingArray.insertToHeap(3);
+		heapTreeOfCourseUsingArray.insertToHeap(5);
+		heapTreeOfCourseUsingArray.insertToHeap(2);
+		heapTreeOfCourseUsingArray.insertToHeap(1);
 		System.out.println(heapTreeOfCourseUsingArray.toString());
+
+//		heapTreeOfCourseUsingArray.extractMin();
+//		heapTreeOfCourseUsingArray.insertToHeap(9);
+//		heapTreeOfCourseUsingArray.insertToHeap(99);
+//		System.out.println(heapTreeOfCourseUsingArray.toString());
 
 	}
 

@@ -18,7 +18,7 @@ public class MaxHeapTreeOfCourseUsingArray {
 //		but I need to apply rule for all the nodes and at the same time I cannot remove that condition. If I remove then I don't have any other recursion
 //		termination condition. So, different simple fix for this
 		int current = size;
-//		I have inserted at last. Of course I must check parent not any children. I doesn't have any children, man, try to understand :D 
+//		I have inserted at last. Of course I must check parent not any children.
 		while (heapArray[current] > heapArray[getParentIndex(current)]) {
 			swap(current, getParentIndex(current));
 			current = getParentIndex(current);

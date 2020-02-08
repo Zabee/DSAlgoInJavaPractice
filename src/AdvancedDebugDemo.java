@@ -1,22 +1,22 @@
+import static org.junit.Assert.assertTrue;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * https://www.eclipse.org/community/eclipse_newsletter/2017/june/article1.php
  * 
- * (1) Watch Points: for global Variables 
- * (2) Trace Points: for local Variables
+ * (1) Watch Points: for global Variables (2) Trace Points: for local Variables
  * or whatever reason, alternative of printing sysout() custome messages - I am
- * here. Inside if condition etc., 
- * (3) Conditional Break point
- * (4) Trigger point: Even if there are some breakpoint at n-x lines but you want to start
- * from 'n'th line 
- * (5) Exception breakpoint
+ * here. Inside if condition etc., (3) Conditional Break point (4) Trigger
+ * point: Even if there are some breakpoint at n-x lines but you want to start
+ * from 'n'th line (5) Exception breakpoint
  *
- * (6) GroupBy or SortBy break points 
- * (7) Show logical structure in variables so that internal structure is hidden 
- * (8) Method's return value can be seen in Variables section 
- * (9) Group multiple launchers and can be executed serially one by one automatically
+ * (6) GroupBy or SortBy break points (7) Show logical structure in variables so
+ * that internal structure is hidden (8) Method's return value can be seen in
+ * Variables section (9) Group multiple launchers and can be executed serially
+ * one by one automatically
  * 
  * @author Zabee
  *
@@ -27,6 +27,9 @@ public class AdvancedDebugDemo {
 	private static int y = 10;
 
 	public static void main(String[] args) {
+		java.util.stream.Stream.iterate(0, i -> ++i)//
+				.forEach(i -> assertTrue(Optional.of(false) == null));
+
 		// Normal Break Point
 		int x = 0;
 

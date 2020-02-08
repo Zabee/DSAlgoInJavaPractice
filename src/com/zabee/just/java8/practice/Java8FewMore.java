@@ -2,18 +2,38 @@ package com.zabee.just.java8.practice;
 
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.function.Function;
+import java.util.function.ToIntFunction;
+import java.util.stream.*;
 
 public class Java8FewMore {
 
 	public static void main(String[] args) {
+		int []array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+		int []anotherArray = array;
+		anotherArray = null;
+		System.out.println(array);
+		System.out.println(anotherArray);
+		System.exit(0);
+		
 		List<String> numberList = Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9");
-		CopyOnWriteArrayList<String> numbersStr = new CopyOnWriteArrayList<String>(numberList); 
+		CopyOnWriteArrayList<String> numbersStr = new CopyOnWriteArrayList<String>(numberList);
 		numbersStr.removeIf(num -> num.equals("5"));
 		int sum1To9 = numbersStr.stream()//
-		.mapToInt(Integer::valueOf)//
-		.sum();
+				.mapToInt(Integer::valueOf)//
+				.reduce(0, (x, y) -> x + y);
+//		.sum();
 		System.out.println(sum1To9);
-		
+		int sum = 0;
+		for (int i = 1; i <= 9; i++) {
+			if (i == 5) {
+				continue;
+			}
+			sum += i;
+		}
+		System.out.println(sum);
+		System.exit(0);
+
 		List<String> students = Arrays.asList("Fabia", "Bob", "Doug", "Amy", "Charlse", "Emily");
 		students.stream()//
 				.sorted((s1, s2) -> s1.compareTo(s2))//

@@ -5,7 +5,7 @@ package com.zabee.dsalgo.trees.heaps;
  * suitable for array due to their random access feature. Please see the answer
  * here -
  * https://stackoverflow.com/questions/10885449/heap-sort-using-linked-lists.
- * Answer is not exactly pointing towards what you want and very much related.
+ * Answer is not exactly pointing towards what you want but very much related.
  * So now switch to arrays implementation of heaps.
  * 
  * @author Zabee
