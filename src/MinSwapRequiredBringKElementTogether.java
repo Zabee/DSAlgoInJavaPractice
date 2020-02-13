@@ -35,7 +35,7 @@ public class MinSwapRequiredBringKElementTogether {
 				minValues++;
 			}
 		}
-		// Calculated value will constitute the window size as all those element
+		// Calculated value will constitute the window size as all those elements
 		// together is the actually length after swap that we need
 		int windowSize = minValues;
 
@@ -54,11 +54,13 @@ public class MinSwapRequiredBringKElementTogether {
 			// If outgoing or leaving from current window element is greater than k then
 			// good news, decrement running swap as for the current window we don't want to
 			// count outgoing, of course!!
-			//Outgoing from current window. For e.g. a[0] is already calculated in above loop this idea get carried over here
+			// Outgoing from current window. For e.g. a[0] is already calculated in the
+			// above loop. So, this idea gets carried over here
 			if (a[i] > k) {
 				runningSwapsRequired--;
 			}
-			// If incoming element to the current window is greater than k then bad news, increment running swap as
+			// If incoming element to the current window is greater than k then bad news,
+			// increment running swap as
 			// for the current window we want to count incoming
 			if (a[j] > k) {
 				runningSwapsRequired++;
