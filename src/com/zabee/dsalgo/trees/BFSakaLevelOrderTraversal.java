@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * 
+ * I think for a graph we need to have a "visited" flag on node level so that the BFS doesn't end up in a infinite loop
  * 				1 
  * 		2 				3 
  * 	4 		5 		6 		7
