@@ -12,12 +12,13 @@ public class PowerSetSolutionRecursive {
         }
         StringBuffer op1 = new StringBuffer(op);
         StringBuffer op2 =  new StringBuffer(op);
-        op2.append(ip.charAt(0));
         StringBuffer temp = new StringBuffer(ip);
-        temp.deleteCharAt(0);
-        //Don't include in output
+        
+        op2.append(ip.charAt(0)); //include in output - op2
+        //Not including in output = op1
+        temp.deleteCharAt(0); // Making input smaller
+        
         printSubsets(temp.toString(), op1.toString());
-        // include in output
         printSubsets(temp.toString(), op2.toString());
     }
 }
