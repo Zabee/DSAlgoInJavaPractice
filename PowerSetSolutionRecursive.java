@@ -5,6 +5,7 @@ public class PowerSetSolutionRecursive {
         List<String> res = new ArrayList<>();
         subset("abc","", res);
         print(res);
+        printLexographicalOrder(res);
     }
     
     private static void print(List<String> subsets){
@@ -12,6 +13,13 @@ public class PowerSetSolutionRecursive {
             System.out.println(subset);
         }
     }
+    
+    private static void printLexographicalOrder(res){
+//      lexicographic order
+        Collections.sort(res);
+        print(res);
+    }
+    
     private static void subset(String ip, String op, List<String> subsetsList/**, Set<String> withoutDup**/){
         if(ip == null || ip.length() ==0){
             // if(!"".equals(op)){
