@@ -1,6 +1,5 @@
 import java.util.*;
-
-public class PowerSetSolutionRecursive {
+public class MyClass {
     public static void main(String args[]) {
         List<String> res = new ArrayList<>();
         subset("abc","", res);
@@ -14,13 +13,13 @@ public class PowerSetSolutionRecursive {
         }
     }
     
-    private static void printLexographicalOrder(res){
+        private static void printLexographicalOrder(List<String> res){
 //      lexicographic order
         Collections.sort(res);
         print(res);
     }
     
-    private static void subset(String ip, String op, List<String> subsetsList/**, Set<String> withoutDup**/){
+    private static void subset(String ip, String op, List<String> subsetsList){
         if(ip == null || ip.length() ==0){
             // if(!"".equals(op)){
                 // System.out.println("{" + op + "}");    
