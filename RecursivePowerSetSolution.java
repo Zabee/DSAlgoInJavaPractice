@@ -1,5 +1,5 @@
 import java.util.*;
-public class MyClass {
+public class RecursivePowerSetSolution {
     public static void main(String args[]) {
         List<String> res = new ArrayList<>();
         subset("abc","", res);
