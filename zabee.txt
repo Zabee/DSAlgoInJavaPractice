@@ -1,1 +1,1 @@
-This is a typical file for testing only. Appending this text
+This is a simple file for testing only. Appending this text
