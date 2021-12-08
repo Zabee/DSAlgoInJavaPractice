@@ -24,9 +24,9 @@ public class ArrayAndEnum {
 			System.out.println("Ordinal i.e. the position:\"" + Constants.ONE.ordinal() + "\"");
 			System.out.println("Name i.e. kind of a key:\"" + Constants.TWO + "\"");
 			System.out.println("Value associated with the kind of a key i.e. the member variable of ENUM:\""
-					+ Constants.THREE.someX + "\"");
+					+ Constants.THREE.xValue + "\"");
 			System.out.println("Value associated with the kind of a key i.e. the member variable of ENUM:\""
-					+ Constants.FOUR.someX + "\"");
+					+ Constants.FOUR.xValue + "\"");
 			System.out.println("Print this inside try");
 			System.out.println("Print this again inside try");
 		} finally {
