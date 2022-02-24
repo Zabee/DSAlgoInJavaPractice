@@ -1,5 +1,7 @@
 import java.util.*;
 
+
+// Reference - https://stackoverflow.com/questions/1894377/understanding-the-workings-of-equals-and-hashcode-in-a-hashmap 
 class Person implements Cloneable{
     String name;
     String dept;
