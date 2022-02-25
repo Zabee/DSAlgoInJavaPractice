@@ -12,7 +12,7 @@ public class Java8RandomPractice {
 				new Person("Umar", 33, Gender.MALE), //
 				new Person("Uthman", 32, Gender.MALE), //
 				new Person("Aali", 3, Gender.FEMALE), //
-				new Person("Sara", 28, Gender.FEMALE)//
+				new Person("Eva", 28, Gender.FEMALE)//
 		);
 		System.out.println("Fist person with age gt 30 Imperative style: " + findFirstPersonNameAgeGt30ImperativeStyle(people));
 		System.out.println("Fist person with age gt 30 Not so imperative style : " + findFirstPersonNameAgeGt30NotSoImperativeStyle(people));
