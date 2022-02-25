@@ -3,7 +3,7 @@ package com.zabee.just.java8.practice;
 import java.util.function.Consumer;
 import java.util.*;
 
-public class ConsumerDemo {
+public class ConsumerFnInterfaceDemo {
 	public static void main(String []args) {
 		Consumer<Integer> strConsumer = str -> System.out.print(str + "\t");
 		justPrint(strConsumer);
