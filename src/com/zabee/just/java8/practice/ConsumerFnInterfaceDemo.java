@@ -1,6 +1,9 @@
-package com.zabee.just.java8.practice;
 
 import java.util.function.Consumer;
+import java.util.function.BiConsumer;
+import java.util.function.IntConsumer;
+import java.util.function.LongConsumer;
+import java.util.function.DoubleConsumer;
 import java.util.*;
 
 public class ConsumerFnInterfaceDemo {
@@ -16,6 +19,23 @@ public class ConsumerFnInterfaceDemo {
 		numbers.add(5);
 		numbers.add(6);
 		numbers.forEach(strConsumer);
+		System.out.println();
+		
+		//BiConsumer
+		BiConsumer<Integer, String> intStrBiConsumer = (x, y) -> System.out.println("BiConsumer: " + x+y);
+		intStrBiConsumer.accept(10, "Ten");
+		
+		//IntConsumer. No need to specify type as the name itself has type
+		IntConsumer intConsumer = (x) -> System.out.println("IntConsumer: " + x);
+		intConsumer.accept(10);
+		
+		//LongConsumer. No need to specify type as the name itself has type
+		LongConsumer longConsumer = x -> System.out.println("LongConsumer : " + x);
+		longConsumer.accept(10);
+		
+		//DoubleConsumer. No need to specify type as the name itself has type
+		DoubleConsumer doubleConsumer = x -> System.out.println("DoubleConsumer : "+ x);
+		doubleConsumer.accept(10.20);
 	}
 	
 	private static void justPrint(Consumer<Integer> strConsumer) {
@@ -25,6 +45,10 @@ public class ConsumerFnInterfaceDemo {
 	}
 }
 /** Output
-	Simply printing: 10	
-	1	2	3	4	5	6
+    Simply printing: 10	
+    1	2	3	4	5	6	
+    BiConsumer: 10Ten
+    IntConsumer: 10
+    LongConsumer : 10
+    DoubleConsumer : 10.2
 **/
