@@ -51,21 +51,46 @@ public class Java8CollectionsConceptsDemo{
                             .map(n -> n)//
                             .reduce(0, (x, y) -> x + y); //0 - initial value, binaryOperator
     System.out.println("Sum of all numbers : " + sumOfAllNums);
+    
+    List<Student> students = createStudentObject();
+    double totalPercentage = students.stream()//
+                                        .map(s1 -> s1.studentPercentageMarks)
+                                        .reduce(0, (spm1, spm2) -> spm1 + spm2);
+    double overAllStudentsPercentage = totalPercentage / students.size();
+    System.out.println("overAllStudentsPercentage: " + overAllStudentsPercentage);
   }
+    private static class Student{
+        public Student(int sid, int spm){
+            this.studentId = sid;
+            this.studentPercentageMarks = spm;
+        }
+        int studentId;
+        int studentPercentageMarks;
+    }
+
+    private static List<Student> createStudentObject(){
+        List<Student> students = new ArrayList<>();
+        for(int i=1; i<=10; i++){
+            students.add(new Student(i, i*8));
+        }
+        return students;
+    }
 }
 
+
 /** Output
-    12345678910
-    12345678910
-    246810
-    Any number > 10 : false
-    Result:2468101214161820
-    ABDULLAH
-    AMR
-    ABID
-    BABUR
-    BARK
-    CAMEL
-    CAT
-    Sum of all numbers : 55
+        12345678910
+        12345678910
+        246810
+        Any number > 10 : false
+        Result:2468101214161820
+        ABDULLAH
+        AMR
+        ABID
+        BABUR
+        BARK
+        CAMEL
+        CAT
+        Sum of all numbers : 55
+        overAllStudentsPercentage: 44.0
 **/
