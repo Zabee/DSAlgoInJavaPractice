@@ -2,7 +2,7 @@ package com.zabee.just.java8.practice;
 
 import java.util.function.Consumer;
 
-public class Java8LambdaInternals {
+public class ConsumerDemo {
 
 	public static void main(String []args) {}
 	
