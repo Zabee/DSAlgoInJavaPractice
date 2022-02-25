@@ -52,7 +52,7 @@ public class Java8CollectionsConceptsDemo{
                             .reduce(0, (x, y) -> x + y); //0 - initial value, binaryOperator
     System.out.println("Sum of all numbers : " + sumOfAllNums);
     
-    List<Student> students = createStudentObject();
+    List<Student> students = createStudentObjects();
     double totalPercentage = students.stream()//
                                         .map(s1 -> s1.studentPercentageMarks)
                                         .reduce(0, (spm1, spm2) -> spm1 + spm2);
@@ -68,7 +68,7 @@ public class Java8CollectionsConceptsDemo{
         int studentPercentageMarks;
     }
 
-    private static List<Student> createStudentObject(){
+    private static List<Student> createStudentObjects(){
         List<Student> students = new ArrayList<>();
         for(int i=1; i<=10; i++){
             students.add(new Student(i, i*8));
