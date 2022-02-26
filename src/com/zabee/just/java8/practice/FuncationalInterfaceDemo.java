@@ -1,5 +1,3 @@
-package com.zabee.just.java8.practice;
-
 /**
  * Looks like the () -> is implicit way of creating object of an interface by
  * providing its only undefined but declared method thus
@@ -18,6 +16,7 @@ public class FuncationalInterfaceDemo {
 		work.dontWork();
 		work.gotoWork();
 		work.doWork();
+		Work.doSomething();
 	}
 
 }
@@ -33,4 +32,15 @@ interface Work {
 	default public void gotoWork() {
 		System.out.println("Going to go to work place");
 	}
+	
+	public static void doSomething(){
+	    System.out.println("Statically doing something");
+	}
 }
+
+/** Output
+        You lazy bugger
+        Going to go to work place
+        Doing some work
+        Statically doing something
+**/
