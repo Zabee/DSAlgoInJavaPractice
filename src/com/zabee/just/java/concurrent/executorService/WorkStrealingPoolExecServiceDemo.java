@@ -5,7 +5,7 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-public class WorkStrealingThreadPoolDemo {
+public class WorkStrealingPoolExecServiceDemo {
 
 	public static void main(String[] args) throws InterruptedException {
 		ForkJoinPool execService = (ForkJoinPool) Executors.newWorkStealingPool(4);
