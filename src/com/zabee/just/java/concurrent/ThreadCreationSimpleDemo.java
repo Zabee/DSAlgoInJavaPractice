@@ -1,6 +1,5 @@
 public class ThreadCreationSimpleDemo{
   
-  //Runnable thread cannot run by itslef. Wrap it inside a Thread before calling start() method    
   private static class MyThreadRunnable implements Runnable{
     @Override
     public void run(){
@@ -21,7 +20,7 @@ public class ThreadCreationSimpleDemo{
 			System.out.println("My thread2!!");
 		}
 	};
-
+  //Runnable thread cannot run by itslef. Wrap it inside a Thread before calling start() method    
 	static Runnable threadRunnable3 = new Runnable() {
 		@Override
 		public void run() {
