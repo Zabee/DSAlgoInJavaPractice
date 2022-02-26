@@ -4,7 +4,7 @@ public class DeadLockSorry {
 
 	public static void main(String[] args) {
 		//THINK TWICE BEFORE EXECUTING INFINITELY RUNNING CODE. 
-		//WARNING: MAY DAY MAY DAY DEADLOCK DEADLOCK 
+		//WARNING: MAY DAY MAY DAY DEADLOCK DEADLOCK ;P
 		Resource r1 = new Resource(10);
 		Resource r2 = new Resource(20);
 		MyThread1 myThread1 = new MyThread1(r1, r2);
