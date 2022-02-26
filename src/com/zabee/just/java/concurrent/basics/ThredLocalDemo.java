@@ -5,7 +5,7 @@ package com.zabee.just.java.concurrent;
  * ThreadLocal holds may gets shared and mixed-up as there is no control over
  * thread creation and its lifecycle in your hand
  * 
- * @author zulla
+ * @author Zabee
  *
  */
 public class ThredLocalDemo {
