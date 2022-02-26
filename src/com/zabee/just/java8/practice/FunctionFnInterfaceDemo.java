@@ -5,6 +5,7 @@ import java.util.function.BiFunction;
 import java.util.function.IntFunction;
 import java.util.function.LongFunction;
 import java.util.function.DoubleFunction;
+import java.util.stream.*;
 
 public class FunctionFnInterfaceDemo {
 
@@ -33,6 +34,14 @@ public class FunctionFnInterfaceDemo {
        DoubleFunction<Integer> dfn = (x) -> 10;
        result = dfn.apply(10.0);
        System.out.println(result);
+        
+        
+      BiFunction<String, String, String[]> strSplit = (s, d) -> s.split(d);
+      String[] res = strSplit.apply("Muhammad:Zabee:Ulla", ":");
+        Stream.iterate(0, i-> i+1)
+                .limit(res.length)
+                .map(i -> res[i])
+                .forEach(System.out::println);
     }
 }
 
@@ -42,4 +51,7 @@ public class FunctionFnInterfaceDemo {
         10.0
         10
         10
+        Muhammad
+        Zabee
+        Ulla
 **/
