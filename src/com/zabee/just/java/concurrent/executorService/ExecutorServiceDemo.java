@@ -36,8 +36,11 @@ public class ExecutorServiceDemo {
 
 		System.out.println("*************Beginning of what is called Scheduled Executor Service");
 		ScheduledExecutorService scheduledThreadPool = Executors.newSingleThreadScheduledExecutor();
+				//After a second delay run this only once
 		ScheduledFuture<?> scheduleFuture = scheduledThreadPool.schedule(cmdThread1, 1, TimeUnit.SECONDS);
+				//After 5 seconds run this for every 5 seconds infinitely.
 		Future<?> future = scheduledThreadPool.scheduleAtFixedRate(cmdThread2, 5, 5, TimeUnit.SECONDS);
+				//After 8 seconds run this for every 4 seconds infinitely.
 		scheduledThreadPool.scheduleWithFixedDelay(cmdThread3, 8, 4, TimeUnit.SECONDS);
 		Thread.sleep(2000);
 		if (!future.isDone()) {
