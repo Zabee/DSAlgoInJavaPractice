@@ -8,8 +8,11 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
-
-public class ExecutorServiceDemo {
+/**
+	ScheduledExecutorService can be used to run cron jobs ;)
+	Now you know how cron jobs work under the hood
+**/
+public class ScheduledExecutorServiceDemo {
 
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 
