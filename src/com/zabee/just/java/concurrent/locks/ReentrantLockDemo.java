@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class SynchronizationUsingLocks {
+public class ReentrantLockDemo {
 
 	public static void main(String[] args) {
 		ItemBox itemBox = new ItemBox();
