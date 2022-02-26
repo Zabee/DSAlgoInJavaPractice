@@ -5,7 +5,7 @@ public class ThreadJoinMethodDemo {
 	public static void main(String[] args) throws InterruptedException {
 		MyThread myThread = new MyThread(10);
 		myThread.start();
-		myThread.join();
+		myThread.join(); // Asking this main() thread to wait till myThread completes
 		System.out.println("My thread is alive? " + myThread.isAlive());
 	}
 
