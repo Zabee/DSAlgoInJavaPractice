@@ -1,4 +1,4 @@
-package com.zabee.just.java.concurrent.deadlock;
+
 
 public class DeadLockSorry {
 
@@ -29,13 +29,12 @@ public class DeadLockSorry {
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				synchronized (r2) {
 				}
 			}
-			System.out.println("Got thre resource. Done!");
+			System.out.println("Got both of resources and task is done!");
 		}
 	}
 
@@ -61,7 +60,7 @@ public class DeadLockSorry {
 				synchronized (r1) {
 				}
 			}
-			System.out.println("Got thre resource. Done!");
+			System.out.println("Got both of resources and task is done!");
 		}
 	}
 	private static class Resource {
@@ -76,3 +75,8 @@ public class DeadLockSorry {
 		}
 	}
 }
+
+/** Output
+	Let's wait for other resource
+	Let's wait for other resource
+**/
