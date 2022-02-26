@@ -1,5 +1,7 @@
 package com.zabee.just.java.concurrent;
 
+// (are obsolete as per Effective Java) see https://stackoverflow.com/questions/3265640/why-threadgroup-is-being-criticised 
+
 public class ThreaGroupExample {
 
 	public static void main(String[] args) throws InterruptedException {
