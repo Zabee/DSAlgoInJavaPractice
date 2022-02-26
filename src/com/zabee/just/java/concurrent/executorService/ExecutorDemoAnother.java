@@ -19,7 +19,13 @@ public class ExecutorDemoAnother {
 		System.out.println("Return value of callable: " + callableStringFuture.get());
 		execSerivce.awaitTermination(1, TimeUnit.SECONDS);
 		execSerivce.shutdown();
-
 	}
-
 }
+
+/** Output
+	Doing some task here
+	Output:
+	Return value of runnable: null
+	Return value of callable: 10
+	Return value of callable: Blah blah black sheep
+**/
