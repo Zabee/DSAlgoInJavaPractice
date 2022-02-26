@@ -3,7 +3,7 @@ package com.zabee.just.java.concurrent.deadlock;
 public class DeadLockSorry {
 
 	public static void main(String[] args) {
-		//THINK TWICE BEFORE RUNNING INFINITELY RUNNING CODE. 
+		//THINK TWICE BEFORE EXECUTING INFINITELY RUNNING CODE. 
 		//WARNING: MAY DAY MAY DAY DEADLOCK DEADLOCK 
 		Resource r1 = new Resource(10);
 		Resource r2 = new Resource(20);
