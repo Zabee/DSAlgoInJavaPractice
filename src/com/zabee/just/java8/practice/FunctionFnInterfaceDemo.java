@@ -15,9 +15,9 @@ public class FunctionFnInterfaceDemo {
        System.out.println(result);
        
         //      ReturnType, Argument1, Argument2
-       BiFunction<Integer, Integer, Integer> bfn = (x, y) -> x+y;
-       result = bfn.apply(10, 20);
-       System.out.println(result);
+       BiFunction<Integer, Integer, Double> bfn = (x, y) -> Double.valueOf(x+y);
+       double resultDbl = bfn.apply(10, 20);
+       System.out.println(resultDbl);
        
        //Argument is Integer and Retrun Type is <Double>
        IntFunction<Double> ifn = (x) -> 10.0;
@@ -38,7 +38,7 @@ public class FunctionFnInterfaceDemo {
 
 /** Output
         20
-        30
+        30.0
         10.0
         10
         10
