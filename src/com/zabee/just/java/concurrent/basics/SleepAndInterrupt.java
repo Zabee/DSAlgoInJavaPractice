@@ -1,57 +1,53 @@
-package com.zabee.just.java.concurrent;
-
+package threads;
 public class SleepAndInterrupt {
 
-	public static void main(String[] args) {
-		MyThread t1 = new MyThread();
-		MyThread t2 = new MyThread();
-		MyThread t3 = new MyThread();
+	public static void main(String[] args) throws InterruptedException {
+		MyThread t1 = new MyThread("One");
+		MyThread t2 = new MyThread("Two");
 
-		MyAnotherThread t4 = new MyAnotherThread();
-		MyAnotherThread t5 = new MyAnotherThread();
-		MyAnotherThread t6 = new MyAnotherThread();
+		MyThread t3 = new MyThread("Three");
+		MyThread t4 = new MyThread("Four");
 
 		t1.start();
 		t2.start();
-		t3.start();
+		System.out.println("Let's wake up One and Two after 2 seconds");
+		Thread.sleep(2000);
 		t1.interrupt();
 		t2.interrupt();
-		t3.interrupt();
 
+		t3.start();
 		t4.start();
-		t5.start();
-		t6.start();
-
+		Thread.sleep(1000);
+		System.out.println("Let's wake up Three and Four after 2 seconds");
+		Thread.sleep(2000);
+		t3.interrupt();
 		t4.interrupt();
-		t5.interrupt();
-		t6.interrupt();
 	}
 
 }
 
 class MyThread extends Thread {
+    private String name;
+    
+    public MyThread(String name){
+        this.name = name;
+    }
+    
 	@Override
 	public void run() {
 		try {
-			synchronized (this) {
-				wait(100000);
-			}
+				Thread.sleep(100000);
 		} catch (InterruptedException e) {
-			System.out.println("Haha");
-			e.printStackTrace();
+			System.out.println("Haha, thread interruped and woke up: " + name);
 		}
-		System.out.println("MyThread Woke up!!");
 	}
 }
 
-class MyAnotherThread extends Thread {
-	@Override
-	public void run() {
-		try {
-			Thread.sleep(100000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		System.out.println("MyAnotherThread Woke up!!");
-	}
-}
+/** Output
+	Let's wake up One and Two after 2 seconds
+	Haha, thread interruped and woke up: One
+	Haha, thread interruped and woke up: Two
+	Let's wake up Three and Four after 2 seconds
+	Haha, thread interruped and woke up: Three
+	Haha, thread interruped and woke up: Four
+**/
