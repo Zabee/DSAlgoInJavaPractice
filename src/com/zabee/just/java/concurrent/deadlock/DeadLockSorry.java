@@ -34,7 +34,7 @@ public class DeadLockSorry {
 				synchronized (r2) {
 				}
 			}
-			System.out.println("Got both of resources and task is done!");
+			System.out.println("Got both of the resources and task is done!");
 		}
 	}
 
@@ -60,7 +60,7 @@ public class DeadLockSorry {
 				synchronized (r1) {
 				}
 			}
-			System.out.println("Got both of resources and task is done!");
+			System.out.println("Got both of the resources and task is done!");
 		}
 	}
 	private static class Resource {
