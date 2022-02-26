@@ -6,11 +6,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * When you make an object volatile. Its reference stored in the Thread Stack
- * memory will be volatile but neither the object itself nor the its member
- * variable
- * 
- *
+ * When you make an object volatile. Its reference stored in the Thread Stack memory and will be volatile.
+ *  Note that neither the object nor the its member variable stored on Thread stack
  */
 public class VolatileWithObjectExample {
 
