@@ -15,6 +15,20 @@ public class ThreadCreationSimpleDemo{
     }
   }
   
+  static Thread thread2 = new Thread() {
+		@Override
+		public void run() {
+			System.out.println("My thread2!!");
+		}
+	};
+
+	static Runnable threadRunnable3 = new Runnable() {
+		@Override
+		public void run() {
+			System.out.println("My thread3!! Runnable one");
+		}
+	};
+  
   public static void main(String []args){
     MyThreadRunnable mrt = new MyThreadRunnable();
     Thread t1 = new Thread(mrt);
@@ -29,6 +43,9 @@ public class ThreadCreationSimpleDemo{
     
     Thread t3 = new Thread(() -> System.out.println("Another ananymous thread doing some work here!"));
     t3.start();
+    
+    thread2.start();
+    new Thread(threadRunnable3).start();
   }
 }
 
@@ -37,4 +54,6 @@ public class ThreadCreationSimpleDemo{
     MyThread doing some work here!!
     Lambda thread doing some work here!
     Another ananymous thread doing some work here!
+    My thread2!!
+    My thread3!! Runnable one
 **/
