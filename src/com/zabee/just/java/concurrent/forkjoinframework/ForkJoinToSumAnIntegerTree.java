@@ -1,4 +1,4 @@
-package com.zabee.just.java.concurrent.forkjoinframework;
+
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
@@ -42,10 +42,8 @@ public class ForkJoinToSumAnIntegerTree {
 				partialSum = node.nodeValue + new MyRecursiveTask(node.left).fork().get()
 						+ new MyRecursiveTask(node.right).fork().get();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (ExecutionException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return partialSum;
@@ -58,10 +56,15 @@ public class ForkJoinToSumAnIntegerTree {
 
 		public Node(int argNodeValue) {
 			nodeValue = argNodeValue;
-			// This is not needed but still to pacify the minds of readers
+			// This is not needed but still to pacify the mind of readers
 			left = right = null;
 
 		}
 
 	}
 }
+
+/** Output
+    Expected result is : 28
+    Final sum is : 28
+**/
