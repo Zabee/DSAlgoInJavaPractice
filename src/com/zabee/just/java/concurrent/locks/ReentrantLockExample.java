@@ -23,8 +23,8 @@ public class ReentrantLockExample {
 		resourceQueue.forEach(i -> System.out.print("\t" + i));
 		System.out.println();
 		ExecutorService workerThreadsexecService = Executors.newFixedThreadPool(6);
-		// Not the beauty is that every thread clears the shared queue and adds back the values to synchronously.
-		// No disruption nothing. The final out is the same as the input i.e. 0 to 9 integer in the shared, main queue.
+		// The beauty is that every thread clears the shared queue and adds back the values to it synchronously.
+		// No disruption nothing. The final output is same as the original input i.e. 0 to 9 integers in the shared, main queue.
 		MyWorkerThread myWorkerThread1 = new MyWorkerThread(reentrantLock, resourceQueue);
 		MyWorkerThread myWorkerThread2 = new MyWorkerThread(reentrantLock, resourceQueue);
 		MyWorkerThread myWorkerThread3 = new MyWorkerThread(reentrantLock, resourceQueue);
