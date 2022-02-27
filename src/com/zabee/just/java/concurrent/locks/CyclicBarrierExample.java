@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class CyclicBarrierExample {
 
 	public static void main(String[] args) throws InterruptedException {
+		// 3 - number of threads to hit barrier before every thread starts. Runnable that displays message when every threds hit barrier or ready
 		CyclicBarrier cyclicBarrier = new CyclicBarrier(3, () -> System.out.println("********** On your mark, Ready, Stready, Go! **********"));
 		ExecutorService execService = Executors.newFixedThreadPool(3);
 		Worker worker1 = new Worker(cyclicBarrier);
