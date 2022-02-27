@@ -1,4 +1,4 @@
-package com.zabee.just.java.concurrent;
+package threads;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class CyclicBarrierExample {
 
 	public static void main(String[] args) throws InterruptedException {
-		CyclicBarrier cyclicBarrier = new CyclicBarrier(3, () -> System.out.println("All right let's go"));
+		CyclicBarrier cyclicBarrier = new CyclicBarrier(3, () -> System.out.println("********** On your mark, Ready, Stready, Go! **********"));
 		ExecutorService execService = Executors.newFixedThreadPool(3);
 		Worker worker1 = new Worker(cyclicBarrier);
 		Worker worker2 = new Worker(cyclicBarrier);
@@ -33,7 +33,7 @@ public class CyclicBarrierExample {
 	}
 
 	private static class Worker extends Thread {
-		CyclicBarrier cyclicBarrier;
+		private CyclicBarrier cyclicBarrier;
 
 		public Worker(CyclicBarrier argCycleBarrier) {
 			this.cyclicBarrier = argCycleBarrier;
@@ -53,3 +53,12 @@ public class CyclicBarrierExample {
 		}
 	}
 }
+/** Output
+	Waiting for others to join at barrier!!
+	Waiting for others to join at barrier!!
+	Waiting for others to join at barrier!!
+	********** On your mark, Ready, Stready, Go! **********
+	Starting and ending thread: pool-1-thread-1
+	Starting and ending thread: pool-1-thread-3
+	Starting and ending thread: pool-1-thread-2
+**/
