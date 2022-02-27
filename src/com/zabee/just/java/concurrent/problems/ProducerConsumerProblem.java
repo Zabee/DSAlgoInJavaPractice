@@ -2,7 +2,10 @@ package com.zabee.just.java.concurrent;
 
 import java.util.Arrays;
 import java.util.List;
-
+/**
+	Putting and Getting one item at a time
+	See https://github.com/Zabee/DSAlgoInJavaPractice/blob/master/src/com/zabee/just/java/concurrent/synchronizedcollections/BlockingQueueExample.java for full problem and solution
+**/
 class MessageResource{
 	private String message;
 	private boolean isEmpty = true;
