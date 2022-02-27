@@ -4,7 +4,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
+/**
+	Syncronization for the Datastructure doens't come out of the box. So, don't be lazy and handle it by yourself.
+**/
 public class CopyOnWriteArrayListDemo {
 
 	public static void main(String[] args) throws InterruptedException {
