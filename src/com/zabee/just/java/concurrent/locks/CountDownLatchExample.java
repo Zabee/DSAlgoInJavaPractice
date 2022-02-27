@@ -1,10 +1,11 @@
-package com.zabee.just.java.concurrent;
+
 
 import java.util.concurrent.CountDownLatch;
 import java.util.stream.Stream;
 
 /**
  * CountDownLatch says I am done you start where as CyclicBarrier says let's start together
+ * Let's say you don't want to interrupt running thread. See the code for details.
  * @author zulla
  *
  */
@@ -53,19 +54,7 @@ public class CountDownLatchExample {
 		}
 	}
 }
-// class AnotherWorker extends Thread {
-//		private Resource resource;
-//
-//		public AnotherWorker(Resource argResource) {
-//			this.resource = argResource;
-//		}
-//
-//		@Override
-//		public void run() {
-//			Stream.iterate(0, i -> ++i)//
-//					.limit(3000)//
-//					.forEach(i -> this.resource.incrementProgramCounter(1));
-//		}
-//
-// }
-//}
+
+/** Output
+	6000
+**/
