@@ -10,7 +10,7 @@ public class AnotherAtomicInteger {
 
 	public static void main(String[] args) throws InterruptedException {
 		Resource resource = new Resource();
-		ExecutorService execService = Executors.newFixedThreadPool(100);
+		ExecutorService execService = Executors.newFixedThreadPool(50);
 		Stream.iterate(0, i -> ++i)//
 				.limit(50)//
 				.forEach(i -> {
