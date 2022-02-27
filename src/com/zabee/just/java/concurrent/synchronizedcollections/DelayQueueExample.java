@@ -1,5 +1,3 @@
-package com.zabee.just.java.concurrent;
-
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -9,6 +7,9 @@ import java.util.concurrent.DelayQueue;
 import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
+/** 
+ * This is not working. Read about this correct the code 
+ **/
 public class DelayQueueExample {
 
 	public static void main(String[] args) {
