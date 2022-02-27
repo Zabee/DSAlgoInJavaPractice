@@ -1,4 +1,4 @@
-package com.zabee.just.java.concurrent;
+
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -15,11 +15,16 @@ public class AnotherAtomicInteger {
 				.limit(50)//
 				.forEach(i -> {
 					execService.submit(new IncrementWorker(resource));
-					execService.submit(new DecrementWorker(resource));
+					if(i % 2 == 0){
+					    execService.submit(new DecrementWorker(resource));    
+					}
+					
 				});
 		execService.awaitTermination(5, TimeUnit.SECONDS);
 		execService.shutdown();
-		System.out.println("Final result is : " + resource.getValue());
+		//See the beauty here. Without synchronized methods or blocks or without doing wait(), notify() without using any locks
+		//So these type of Datastructures comes with out of the box synchronization. So, enjoy without worrying
+		System.out.println("Expected result: 25. Final result : " + resource.getValue());
 
 	}
 
@@ -65,3 +70,6 @@ public class AnotherAtomicInteger {
 		}
 	}
 }
+/** Output
+        Expected result: 25. Final result : 25
+ **/
