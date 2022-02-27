@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
- * CyclicBarrier says let's wait for every other thread where CountDownLatch
+ * CyclicBarrier says let's wait for every other thread whereas CountDownLatch
  * says I am done anyone of you may start
  * 
  * @author zulla
