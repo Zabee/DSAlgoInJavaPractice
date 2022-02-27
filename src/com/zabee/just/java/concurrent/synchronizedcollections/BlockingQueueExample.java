@@ -1,4 +1,4 @@
-package com.zabee.just.java.concurrent;
+
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -64,10 +64,23 @@ public class BlockingQueueExample {
 		@Override
 		public void run() {
 			while (!itemsQueue.isEmpty()) {
-				System.out.println(itemsQueue.remove());
+				System.out.println("Consuming: " + itemsQueue.remove());
 			}
 		}
-
 	}
-
 }
+/** Output
+    Consuming: Water
+    Consuming: Toothpaste
+    Consuming: Toothbrush
+    Consuming: Soap
+    Consuming: Shampoo
+    Consuming: Towel
+    Consuming: Perfume
+    Consuming: Clothes
+    Consuming: Footwear
+    Consuming: Bike
+    Consuming: Road
+    Consuming: Traffic
+    Consuming: Office
+ **/
