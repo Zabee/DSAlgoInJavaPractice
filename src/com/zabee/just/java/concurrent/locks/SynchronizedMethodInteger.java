@@ -7,7 +7,7 @@ public class SynchronizedMethodInteger {
 
 	public static void main(String[] args) {
 		SynchedIntegerResource synchedInt = SynchedIntegerResource.valueOf(0);
-		ExecutorService execServ = Executors.newFixedThreadPool(50);
+		ExecutorService execServ = Executors.newFixedThreadPool(50);  //At max create 50 threads and reuse the completed ones.
 		java.util.stream.Stream.iterate(0, i -> ++i)//
 				.limit(50)//
 				.forEach(i -> { // Warning: This is anti-lambda pattern
