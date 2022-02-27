@@ -4,7 +4,11 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
+/** We are here to demo
+		List<Integer> synchedIntList = Collections.synchronizedList(new ArrayList<Integer>());
+		Set<Float> synchedSet = Collections.synchronizedSet(new HashSet<Float>());
+		Map<Float, Float> synchedMap = Collections.synchronizedMap(new HashMap<Float, Float>());
+**/
 public class SynchronizedCollections {
 
 	public static void main(String[] args) throws InterruptedException {
