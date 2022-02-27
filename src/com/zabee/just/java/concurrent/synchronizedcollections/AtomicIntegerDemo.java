@@ -1,4 +1,4 @@
-package com.zabee.just.java.concurrent;
+
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -18,7 +18,7 @@ public class AtomicIntegerDemo {
 			}
 		}
 		execService.awaitTermination(10, TimeUnit.SECONDS);
-		System.out.println(actCounter.getValue());
+		System.out.println("Expected output: 50. Acutal output: "+actCounter.getValue());
 		execService.shutdown();
 	}
 }
@@ -27,6 +27,7 @@ class AtomicCounter {
 	AtomicInteger counter = new AtomicInteger();
 
 	public void increment() {
+		counter.incrementAndGet();
 		counter.incrementAndGet();
 	}
 
@@ -38,3 +39,6 @@ class AtomicCounter {
 		return counter.get();
 	}
 }
+/**
+    Expected output: 50. Acutal output: 50
+ **/
