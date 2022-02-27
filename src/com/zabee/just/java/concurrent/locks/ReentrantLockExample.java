@@ -1,4 +1,4 @@
-package com.zabee.just.java.concurrent.locks;
+package threads;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,11 +13,18 @@ public class ReentrantLockExample {
 
 	public static void main(String[] args) throws InterruptedException {
 		ReentrantLock reentrantLock = new ReentrantLock(true);
+
+		// Let's add 0 to 9 integers to resourceQueue
 		ConcurrentLinkedQueue<Integer> resourceQueue = new ConcurrentLinkedQueue<>();
 		Stream.iterate(0, i -> ++i)//
 				.limit(10)//
 				.forEach(i -> resourceQueue.add(i));
+		System.out.print("Input        :");
+		resourceQueue.forEach(i -> System.out.print("\t" + i));
+		System.out.println();
 		ExecutorService workerThreadsexecService = Executors.newFixedThreadPool(6);
+		// Not the beauty is that every thread clears the shared queue and adds back the values to synchronously.
+		// No disruption nothing. The final out is the same as the input i.e. 0 to 9 integer in the shared, main queue.
 		MyWorkerThread myWorkerThread1 = new MyWorkerThread(reentrantLock, resourceQueue);
 		MyWorkerThread myWorkerThread2 = new MyWorkerThread(reentrantLock, resourceQueue);
 		MyWorkerThread myWorkerThread3 = new MyWorkerThread(reentrantLock, resourceQueue);
@@ -29,23 +36,20 @@ public class ReentrantLockExample {
 				myWorkerThread5, myWorkerThread6);
 		workers.forEach(worker -> workerThreadsexecService.submit(worker));
 		for (MyWorkerThread worker : workers) {
-			worker.join();
+			worker.join(); // This main waits until all the worker threads finish their execution
 		}
 		try {
 			TimeUnit.SECONDS.sleep(1);
-			//OR
-//			Thread.sleep(1000);
 		} catch (InterruptedException e) {
-
 		}
-		resourceQueue.forEach(i -> System.out.print(i));
+		System.out.print("Final Output :");
+		resourceQueue.forEach(i -> System.out.print("\t" + i));
 		workerThreadsexecService.shutdown();
 	}
 
 	private static class MyWorkerThread extends Thread {
 		private final ReentrantLock reentrantLock;
 		private final ConcurrentLinkedQueue<Integer> thisResourceQueue;
-//		private static int threadCnt = 0;
 
 		private MyWorkerThread(final ReentrantLock argReentrantLock,
 				final ConcurrentLinkedQueue<Integer> argResourceQueue) {
@@ -56,13 +60,14 @@ public class ReentrantLockExample {
 		@Override
 		public void run() {
 			try {
-//				System.out.println("Before acquiring the lock");
 				reentrantLock.lock();
 				ConcurrentLinkedQueue<Integer> myQueue = new ConcurrentLinkedQueue<>();
-				thisResourceQueue.forEach(i -> myQueue.add(++i));
+				// Copy the values to my local queue
+				thisResourceQueue.forEach(i -> myQueue.add(i));
+				// Clear the shared, main Queue
 				thisResourceQueue.clear();
+				// Add back the local queue values to shared, main Queue
 				myQueue.forEach(i -> thisResourceQueue.add(i));
-//				System.out.println("Updated the queue" + ++threadCnt);
 			} finally {
 				reentrantLock.unlock();
 			}
@@ -70,3 +75,8 @@ public class ReentrantLockExample {
 		}
 	}
 }
+
+/** Output
+	Input        :	0	1	2	3	4	5	6	7	8	9
+	Final Output :	0	1	2	3	4	5	6	7	8	9
+**/
